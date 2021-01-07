@@ -12,5 +12,6 @@ if __name__ == "__main__":
     test_grid = grid.Grid(f"data/{data_folder}/{data_file}_houses.csv", f"data/{data_folder}/{data_file}_batteries.csv")
 
     print("hoi")
+    print("Hoi2")
 
 
