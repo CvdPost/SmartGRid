@@ -14,13 +14,27 @@ class Grid():
         """
         Load all the batteries into the grid.
         """
-        pass
+        batteries = {}
+        with open(battery_file, 'r') as in_file:
+            reader = csv.DictReader(in_file)
+            # check how to give id name 
+            for row in reader:
+                batteries[row['id']] = Battery(row['positie'], row['capaciteit'])
+
+        return batteries
 
     def load_houses(self, house_file):
         """
         Load all the houses into the grid.
         """
-        pass 
+        houses = {}
+        with open(house_file, 'r') as in_file:
+            reader = csv.DictReader(in_file)
+            # check how to give id name 
+            for row in reader:
+                houses[row['id']] = House(row['x'], row['y'], row['maxoutput'])
+
+        return houses
 
     
         
