@@ -22,7 +22,6 @@ class Grid():
                 position = row['positie'].split(',')
                 batteries[counter] = Battery(position[0], position[1], counter, row['capaciteit'])
                 counter += 1
-
         return batteries
 
     def load_houses(self, house_file):

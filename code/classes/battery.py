@@ -10,11 +10,11 @@ class Battery():
 
     def set_connection(self, house):
         # connect houses to batteries
-        self.connect = 
+        self.connect[house.id] = house
 
     def is_connected(self):
         # check if connection is valid
         pass
 
-    def __repr__(self):
+    def __str__(self):
         return self.id
