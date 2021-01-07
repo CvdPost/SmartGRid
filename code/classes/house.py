@@ -7,4 +7,4 @@ class House():
 
 
     def __repr__(self):
-        return self.id
+        return f"{self.id}"

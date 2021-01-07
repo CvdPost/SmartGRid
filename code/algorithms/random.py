@@ -1,9 +1,14 @@
 import random
 
-def random_assignment(grid, houses):
+def random_assignment(grid):
     """
     Randomly assign each house to one of the batteries
     """
-    for battery in grid.batteries.values():
-        battery.set_connection(random.choice(grid.houses))
+    print(grid.batteries.values())
+    print(grid.batteries)
+    print(list(grid.batteries.values()))
+
+    for house in grid.houses.values():
+        battery = random.choice(list(grid.batteries.values()))
+        battery.set_connection(house)
         

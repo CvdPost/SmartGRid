@@ -15,10 +15,10 @@ if __name__ == "__main__":
     # print(test_grid)
     print("hoi")
 
-    random_test_grid = random.random_assignment(test_grid, test_grid.houses)
+    random.random_assignment(test_grid)
 
     print("Hoi2")
-
-    print(test_grid.batteries.id[1])
+    b_list = test_grid.batteries[1]
+    print(b_list.connect)
 
 

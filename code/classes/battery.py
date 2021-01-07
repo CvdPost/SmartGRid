@@ -4,17 +4,17 @@ class Battery():
         self.y_location = y_location
         self.id = battery_id
         self.capacity = capacity
-        self.connect = {}
+        self.connect = []
         self.value = None
 
 
     def set_connection(self, house):
         # connect houses to batteries
-        self.connect[house.id] = house
+        self.connect.append(house)
 
     def is_connected(self):
         # check if connection is valid
         pass
 
-    def __str__(self):
-        return self.id
+    def __repr__(self):
+        return f"{self.id}"
