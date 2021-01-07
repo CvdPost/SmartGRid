@@ -6,8 +6,8 @@ nodes: [House]
 Methods</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>190</x><y>92</y><w>100</w><h>150</h></coordinates><panel_attributes>Battery 
 --
 capacity: float
-x_location: float 
-y_location: float 
+x_location: int
+y_location: int
 id: int
 connection: {?:?}
 --

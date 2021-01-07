@@ -17,9 +17,11 @@ class Grid():
         batteries = {}
         with open(battery_file, 'r') as in_file:
             reader = csv.DictReader(in_file)
-            # check how to give id name 
+            counter = 1 
             for row in reader:
-                batteries[row['id']] = Battery(row['positie'], row['capaciteit'])
+                position = row['positie'].split(',')
+                batteries[counter] = Battery(position[0], position[1], counter, row['capaciteit'])
+                counter += 1
 
         return batteries
 
@@ -28,11 +30,12 @@ class Grid():
         Load all the houses into the grid.
         """
         houses = {}
+        counter = 1
         with open(house_file, 'r') as in_file:
             reader = csv.DictReader(in_file)
-            # check how to give id name 
             for row in reader:
-                houses[row['id']] = House(row['x'], row['y'], row['maxoutput'])
+                houses[counter] = House(row['x'], row['y'], counter, row['maxoutput'])
+                counter += 1
 
         return houses
 
