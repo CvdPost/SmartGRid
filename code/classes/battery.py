@@ -5,8 +5,15 @@ class Battery():
         self.id = battery_id
         self.capacity = capacity
         self.connect = {}
+        self.value = None
 
-    def add_connection(self):
+
+    def set_connection(self, house):
+        # connect houses to batteries
+        self.connect = 
+
+    def is_connected(self):
+        # check if connection is valid
         pass
 
     def __repr__(self):
