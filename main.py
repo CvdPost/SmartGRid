@@ -1,12 +1,10 @@
 from code.classes import grid
+from code.visualization import visualise
 
 from code.algorithms import random
 
 from bokeh.models import grids
 from bokeh.plotting import figure, output_file, show
-
-import matplotlib.pyplot as plt
-import networkx as nx
 
 if __name__ == "__main__":
 
@@ -24,23 +22,9 @@ if __name__ == "__main__":
     b_list = test_grid.batteries[1]
 
     #Creating a visualisation
-    output_file("test.html")
+    output_file(f"{data_folder}.html")
 
-    p = figure(plot_width=400, plot_height=400)
-    
-    # Plotting the batteries  (navy blue)
-    for battery in test_grid.batteries.values():
-        print(battery.x_location, battery.y_location)
-        p.circle([battery.x_location], [battery.y_location], size=20, color="navy", alpha=1)
-    
-    # Plotting the houses  (red)
-    for house in test_grid.houses.values():
-        p.circle([house.x_location], [house.y_location], size=7, color="red", alpha=0.5)
-    
-    
-    show(p)
-
-
+    visualise.visualise(test_grid)
 
 
 

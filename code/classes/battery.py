@@ -12,9 +12,11 @@ class Battery():
         # connect houses to batteries
         self.connect.append(house)
 
-    def is_connected(self):
+    def is_connected(self, house):
         # check if connection is valid
-        pass
+        if house in self.connect:
+            return True
+        return False
 
     def __repr__(self):
         return f"{self.id}"
