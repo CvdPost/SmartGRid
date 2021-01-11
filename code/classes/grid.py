@@ -5,10 +5,10 @@ from .house import House
 
 
 class Grid():
-    def __init__(self, house_file, battery_file):
+    def __init__(self, house_file, battery_file, name):
         self.batteries = self.load_batteries(battery_file)
         self.houses = self.load_houses(house_file)
-
+        self.name = name
 
     def load_batteries(self, battery_file):
         """

@@ -26,3 +26,7 @@
 
     # # #Add G?
     # plt.show()
+
+    # test if ouput is bigger than capacity 
+    # if total_output > float(battery.capacity):
+    #     random.random_assignment(test_grid)

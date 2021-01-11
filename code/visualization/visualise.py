@@ -1,9 +1,18 @@
 from bokeh.models import grids
 from bokeh.plotting import figure, output_file, show
+from bokeh.models import SingleIntervalTicker, LinearAxis
 
 
-def visualise(grid):
-    p = figure(plot_width=800, plot_height=800)
+
+def visualise(grid, name):
+    p = figure(plot_width=1000, plot_height=800, title = f"Plot {name}")
+
+    # set minor gridlines for every tick
+    p.axis.ticker.num_minor_ticks = 10
+
+    # set color of gridlines
+    p.ygrid.minor_grid_line_color = p.xgrid.minor_grid_line_color = 'lightgrey'
+  
     
     # Plotting the batteries  (navy blue)
     for battery in grid.batteries.values():
@@ -20,4 +29,5 @@ def visualise(grid):
             if battery.is_connected(house):
                 p.line([battery.x_location, house.x_location], [battery.y_location, house.y_location], line_width=1, line_dash='dotdash')
 
+    
     show(p)
