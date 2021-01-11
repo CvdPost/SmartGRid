@@ -22,9 +22,20 @@ if __name__ == "__main__":
     b_list = test_grid.batteries[1]
 
     #Creating a visualisation
-    output_file(f"{data_folder}.html")
+    # output_file(f"{data_folder}.html")
 
-    visualise.visualise(test_grid)
+    # visualise.visualise(test_grid)
+
+    print(test_grid.batteries.values())
+    # detemine output delivered to battery
+    for battery in test_grid.batteries.values():
+        total_output = []
+        for connected_house in battery.connect:
+            total_output.append(connected_house.output)
+            print(connected_house.output)
+
+    
+    # check if output is equal or smaller to the capacity
 
 
 

@@ -14,7 +14,7 @@ def visualise(grid):
     for house in grid.houses.values():
         p.circle([house.x_location], [house.y_location], size=7, color="red", alpha=0.5)
     
-    # Plotting the lines coneecting houses with batteries
+    # Plotting the lines connecting houses with batteries
     for battery in grid.batteries.values():
         for house in grid.houses.values():
             if battery.is_connected(house):
