@@ -1,4 +1,5 @@
 import random
+import copy
 
 def random_assignment(grid):
     """
@@ -8,14 +9,28 @@ def random_assignment(grid):
     print(grid.batteries)
     print(list(grid.batteries.values()))
 
-    for house in grid.houses.values():
-        battery = random.choice(list(grid.batteries.values()))
-        battery.set_connection(house)
+    #create a copy of grid to remove batteries
+    temp_batteries = copy.deepcopy(grid.batteries)
+    print('test', temp_batteries)
     
+
+    for house in temp_grid.houses.values():
+        battery = random.choice(list(temp_batteries.batteries.values()))
+        battery.set_connection(house)
+
+        if sum(battery.connect.values()) > battery.capacity: 
+
+        # for output in house:
+  
     # print(battery.connect)
-    # print(sum(battery.connect))
-        # if sum(battery.connect) > battery.capacity: 
+    # print('random')
+    # print(battery.connect)
+    
+ 
+    # print('hoi', battery.id, sum(battery.connect.values()))
+        
+            #exclude completed battery in next instance of loop
+            completed_battery = battery.id
+
         #     battery.set_connection(house)
         # else:
-
-        
