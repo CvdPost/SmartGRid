@@ -31,6 +31,19 @@ if __name__ == "__main__":
     solution_file = dictwriter("poep")
 
     data = {}
-    data['0'] = grid.name
+    data['0'] = {test_grid['district'] = test_grid.name, test_grid['costs-shared'] = None}
+    # Iterate over batteries
+    while i != len(test_grid.batteries)
+    
+        for battery in test_grid.batteries:
+            location = f"{battery.x_location}, {battery.y_location}"
+            data[battery.id] = {'location' = location
+            
+            
+            
+            {test_grid['location'] = test_grid.}
+
     data['costs-shared'] = None
-    data['location']
+    data['location'] = battery.x_location, battery.y_location
+    data['capacity'] = 
+    data['houses'] = 
