@@ -32,8 +32,8 @@ if __name__ == "__main__":
     for battery in test_grid.batteries.values():
         total_output = 0 
         for connected_house in battery.connect:
-            total_output = total_output + float(connected_house.output)     
-        print(battery.id, battery.capacity, total_output)
+            total_output = total_output + float(connected_house.output)    
+        print(battery.id, battery.capacity, total_output, ':', battery.total_output)
 
     # check if output is equal or smaller to the capacity
 
