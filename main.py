@@ -6,6 +6,8 @@ from code.algorithms import random
 from bokeh.models import grids
 from bokeh.plotting import figure, output_file, show
 
+import json
+
 if __name__ == "__main__":
 
     # choose which data folder we pick
@@ -24,20 +26,11 @@ if __name__ == "__main__":
     #Creating a visualisation
     output_file(f"{data_folder}.html")
 
-    # visualise.visualise(test_grid, data_folder)
+    visualise.visualise(test_grid, data_folder)
 
-    print(test_grid.batteries.values())
+    solution_file = dictwriter("poep")
 
-    # detemine output delivered to battery
-    for battery in test_grid.batteries.values():
-        total_output = 0 
-        for connected_house in battery.connect:
-            total_output = total_output + float(connected_house.output)    
-        print(battery.id, battery.capacity, total_output, ':', battery.total_output)
-
-    # check if output is equal or smaller to the capacity
-
-
-
-
-    
+    data = {}
+    data['0'] = grid.name
+    data['costs-shared'] = None
+    data['location']

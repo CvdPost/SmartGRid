@@ -2,8 +2,6 @@ from bokeh.models import grids
 from bokeh.plotting import figure, output_file, show
 from bokeh.models import SingleIntervalTicker, LinearAxis
 
-
-
 def visualise(grid, name):
     p = figure(plot_width=1000, plot_height=800, title = f"Plot {name}")
 
@@ -16,7 +14,7 @@ def visualise(grid, name):
     
     # Plotting the batteries  (navy blue)
     for battery in grid.batteries.values():
-        print(battery.x_location, battery.y_location)
+        # print(battery.x_location, battery.y_location)
         p.circle([battery.x_location], [battery.y_location], size=20, color="navy", alpha=1)
     
     # Plotting the houses  (red)
@@ -29,5 +27,4 @@ def visualise(grid, name):
             if battery.is_connected(house):
                 p.line([battery.x_location, house.x_location], [battery.y_location, house.y_location], line_width=1, line_dash='dotdash')
 
-    
     show(p)

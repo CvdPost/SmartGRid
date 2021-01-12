@@ -30,3 +30,27 @@
     # test if ouput is bigger than capacity 
     # if total_output > float(battery.capacity):
     #     random.random_assignment(test_grid)
+
+
+    # setting left over houses in list and tried to remove 
+
+             # print('left over:', house.id, house.output)
+            
+                # left_overs.append(house)
+            # else:
+            #     battery.connected_output(house)
+            #     battery.set_connection(house)
+            #     # left_overs.remove(house)
+    
+
+
+
+    # detemine output delivered to battery
+    # for battery in test_grid.batteries.values():
+    #     total_output = 0 
+    #     for connected_house in battery.connect:
+    #         total_output = total_output + float(connected_house.output)    
+      
+    #print(battery.id, battery.capacity, total_output, ':', battery.total_output)
+
+
