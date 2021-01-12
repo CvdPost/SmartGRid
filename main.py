@@ -28,22 +28,22 @@ if __name__ == "__main__":
 
     visualise.visualise(test_grid, data_folder)
 
-    solution_file = dictwriter("poep")
+    # solution_file = dictwriter("poep")
 
-    data = {}
-    data['0'] = {test_grid['district'] = test_grid.name, test_grid['costs-shared'] = None}
-    # Iterate over batteries
-    while i != len(test_grid.batteries)
+    # data = {}
+    # data['0'] = {test_grid['district'] = test_grid.name, test_grid['costs-shared'] = None}
+    # # Iterate over batteries
+    # while i != len(test_grid.batteries)
     
-        for battery in test_grid.batteries:
-            location = f"{battery.x_location}, {battery.y_location}"
-            data[battery.id] = {'location' = location
+    #     for battery in test_grid.batteries:
+    #         location = f"{battery.x_location}, {battery.y_location}"
+    #         data[battery.id] = {'location' = location
             
             
             
-            {test_grid['location'] = test_grid.}
+    #         {test_grid['location'] = test_grid.}
 
-    data['costs-shared'] = None
-    data['location'] = battery.x_location, battery.y_location
-    data['capacity'] = 
-    data['houses'] = 
+    # data['costs-shared'] = None
+    # data['location'] = battery.x_location, battery.y_location
+    # data['capacity'] = 
+    # data['houses'] = 

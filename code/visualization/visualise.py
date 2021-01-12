@@ -25,6 +25,7 @@ def visualise(grid, name):
     for battery in grid.batteries.values():
         for house in grid.houses.values():
             if battery.is_connected(house):
-                p.line([battery.x_location, house.x_location], [battery.y_location, house.y_location], line_width=1, line_dash='dotdash')
+                p.line([battery.x_location, house.x_location], [battery.y_location, battery.y_location], line_width=1)
+                p.line([house.x_location, house.x_location], [battery.y_location, house.y_location], line_width=1)
 
     show(p)
