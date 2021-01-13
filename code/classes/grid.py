@@ -49,10 +49,10 @@ class Grid():
         for house in self.houses.values():
             variable_costs = variable_costs + house.costs_house
         
-        total_costs = fixed_costs + variable_costs
+        self.total_costs = fixed_costs + variable_costs
         print(fixed_costs)
         print(variable_costs)
-        print(total_costs)
+        print(self.total_costs)
         return self.total_costs
 
 
