@@ -35,12 +35,36 @@ if __name__ == "__main__":
     
     test_grid.grid_costs()
 
-            
+    
+    
+    #Creating an output file      
+    data = {}
+    
+    data[0] = []
+    # For only one district (add loop when analyzing multiple districts)
+    data[0].append({
+        'district': test_grid.name,
+        'costs-shared': test_grid.total_costs
+    })
+    i = 1
+    for i, battery in enumerate(test_grid.batteries.values()):
+        data[i] = []
+        data[i].append({
+        'location': f"{battery.x_location}, {battery.y_location}",
+        'capacity': battery.capacity,
+        'houses': 
+        for house in battery.connect.values():
+            data_houses['house'] = []
+            data_houses['house'].append({
+                'location': f"{house.x_location}, {house.y_location}"
+                })
 
-    # solution_file = dictwriter("poep")
+        })
+    with open('data.json', 'w') as outfile:
+        json.dump(data, outfile, indent=4)
 
-    # data = {}
-    # data['0'] = {test_grid['district'] = test_grid.name, test_grid['costs-shared'] = None}
+
+    # {test_grid['district'] = test_grid.name, test_grid['costs-shared'] = None}
     # # Iterate over batteries
     # while i != len(test_grid.batteries)
     
