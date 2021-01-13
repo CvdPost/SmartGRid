@@ -28,10 +28,5 @@ def visualise(grid, name):
             if battery.is_connected(house):
                 p.line([battery.x_location, house.x_location], [battery.y_location, battery.y_location], line_width=1)
                 p.line([house.x_location, house.x_location], [battery.y_location, house.y_location], line_width=1)
-                manhatthan_distance = abs(int(battery.x_location) - int(house.x_location)) + abs(int(battery.y_location) - int(house.y_location))
-                print('from house', house.id, 'to battery', battery.id, 'manhatthan distance:', manhatthan_distance)
-                total_costs_house = (9*manhatthan_distance)
-                print('total costs house:',total_costs_house )
-                return manhatthan_distance 
-
+    
     show(p)

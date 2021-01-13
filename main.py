@@ -1,4 +1,4 @@
-from code.classes import grid
+from code.classes import grid, house
 from code.visualization import visualise
 
 from code.algorithms import random
@@ -26,7 +26,16 @@ if __name__ == "__main__":
     #Creating a visualisation
     output_file(f"{data_folder}.html")
 
-    visualise.visualise(test_grid, data_folder)
+    # visualise.visualise(test_grid, data_folder)
+
+    for battery in test_grid.batteries.values():
+        for house in battery.connect:
+            distance = house.manhattan_distance(battery, house)
+            cost = house.cable_costs_house(distance)
+    
+    test_grid.grid_costs()
+
+            
 
     # solution_file = dictwriter("poep")
 

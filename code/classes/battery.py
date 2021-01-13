@@ -6,6 +6,7 @@ class Battery():
         self.capacity = capacity
         self.connect = []
         self.total_output = 0
+        self.installation_costs = 5000
 
 
     def set_connection(self, house):

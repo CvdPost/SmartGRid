@@ -9,6 +9,7 @@ class Grid():
         self.batteries = self.load_batteries(battery_file)
         self.houses = self.load_houses(house_file)
         self.name = name
+        self.total_costs = 0
 
     def load_batteries(self, battery_file):
         """
@@ -37,6 +38,27 @@ class Grid():
                 counter += 1
 
         return houses
+    
+    def grid_costs(self):
+        fixed_costs = 0
+        variable_costs = 0
+
+        for battery in self.batteries.values():
+            fixed_costs = fixed_costs + battery.installation_costs
+        
+        for house in self.houses.values():
+            variable_costs = variable_costs + house.costs_house
+        
+        total_costs = fixed_costs + variable_costs
+        print(fixed_costs)
+        print(variable_costs)
+        print(total_costs)
+        return self.total_costs
+
+
+
+
+                
 
     
         
