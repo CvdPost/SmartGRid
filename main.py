@@ -5,8 +5,10 @@ from code.algorithms import random
 
 from bokeh.models import grids
 from bokeh.plotting import figure, output_file, show
+import time
 
-import json
+start_time = time.time()
+ 
 
 if __name__ == "__main__":
 
@@ -20,87 +22,22 @@ if __name__ == "__main__":
     test_grid = grid.Grid(f"data/{data_folder}/{data_file}_houses.csv", f"data/{data_folder}/{data_file}_batteries.csv", data_folder)
     
     #Randomly assign a house to one of the batteries
-    random.random_assignment(test_grid)
+    # test1 = random.random_assignment(test_grid)
+   
+    while random.random_assignment(test_grid) == False:
+        print("LOSERS", test_grid.total_costs)
+        random.random_assignment(test_grid)
+
    
     #Creating a visualisation
     output_file(f"{data_folder}.html")
 
     # visualise.visualise(test_grid, data_folder)
 
-    for battery in test_grid.batteries.values():
-        for house in battery.connect:
-            distance = house.manhattan_distance(battery, house)
-            cost = house.cable_costs_house(distance)
-    
+    # calculates total costs and gerenarest output file
     test_grid.grid_costs()
+    test_grid.output_file()
+    print("SOLUTION")
+    print("--- %s seconds ---" % (time.time() - start_time))
 
-    # for house in test_grid.houses.values():
-    #     print(house.costs_house)
-    print('test', test_grid.total_costs)
-    grid_list = [] 
-
-    grid_dict = {'district': test_grid.name, 'costs-shared': test_grid.total_costs}
-    grid_list.append(grid_dict)
-
-    for battery in test_grid.batteries.values():
-        dict_battery = {'location': f"{battery.x_location}, {battery.y_location}", 'capacity': battery.capacity, 'houses': []}
-
-        for house in battery.connect:
-            # still have to add cables 
-            dict_house = {'location': f"{house.x_location}, {house.y_location}", 'house': house.output}
-            dict_battery['houses'].append(dict_house)
-
-        grid_list.append(dict_battery)
-
-    with open('data.json', 'w') as outfile:
-        json.dump(grid_list, outfile, indent=4)
-
-
-
-
-
-
-
-    # #Creating an output file      
-    # data = {}
     
-    # data[0] = []
-    # # For only one district (add loop when analyzing multiple districts)
-    # data[0].append({
-    #     'district': test_grid.name,
-    #     'costs-shared': test_grid.total_costs
-    # })
-    # i = 1
-    # for i, battery in enumerate(test_grid.batteries.values()):
-    #     data[i] = []
-    #     data[i].append({
-    #     'location': f"{battery.x_location}, {battery.y_location}",
-    #     'capacity': battery.capacity,
-    #     'houses': 
-    #     for house in battery.connect.values():
-    #         data_houses['house'] = []
-    #         data_houses['house'].append({
-    #             'location': f"{house.x_location}, {house.y_location}"
-    #             })
-
-    #     })
-    # with open('data.json', 'w') as outfile:
-    #     json.dump(data, outfile, indent=4)
-
-
-    # {test_grid['district'] = test_grid.name, test_grid['costs-shared'] = None}
-    # # Iterate over batteries
-    # while i != len(test_grid.batteries)
-    
-    #     for battery in test_grid.batteries:
-    #         location = f"{battery.x_location}, {battery.y_location}"
-    #         data[battery.id] = {'location' = location
-            
-            
-            
-    #         {test_grid['location'] = test_grid.}
-
-    # data['costs-shared'] = None
-    # data['location'] = battery.x_location, battery.y_location
-    # data['capacity'] = 
-    # data['houses'] = 

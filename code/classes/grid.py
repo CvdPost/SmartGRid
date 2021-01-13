@@ -1,8 +1,6 @@
-import csv 
-
+import csv, json
 from .battery import Battery 
 from .house import House
-
 
 class Grid():
     def __init__(self, house_file, battery_file, name):
@@ -44,21 +42,32 @@ class Grid():
         variable_costs = 0
 
         for battery in self.batteries.values():
+            for house in battery.connect:
+                house.cable_costs_house(battery)
+                variable_costs = variable_costs + house.costs_house
             fixed_costs = fixed_costs + battery.installation_costs
         
-        for house in self.houses.values():
-            variable_costs = variable_costs + house.costs_house
-        
         self.total_costs = fixed_costs + variable_costs
-        print(fixed_costs)
-        print(variable_costs)
-        print(self.total_costs)
+
         return self.total_costs
 
+    def output_file(self):
+        grid_list = [] 
 
+        grid_dict = {'district': self.name, 'costs-shared': self.total_costs}
+        grid_list.append(grid_dict)
 
+        for battery in self.batteries.values():
+            dict_battery = {'location': f"{battery.x_location}, {battery.y_location}", 'capacity': battery.capacity, 'houses': []}
 
-                
+            for house in battery.connect:
+                # still have to add cables 
+                dict_house = {'location': f"{house.x_location}, {house.y_location}", 'house': house.output}
+                dict_battery['houses'].append(dict_house)
 
-    
-        
+            grid_list.append(dict_battery)
+
+        with open('data.json', 'w') as outfile:
+            json.dump(grid_list, outfile, indent=4)
+
+        print(self.total_costs)
