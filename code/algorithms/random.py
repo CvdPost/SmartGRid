@@ -5,6 +5,13 @@ def random_assignment(grid):
     """
     Randomly assign each house to one of the batteries
     """
+
+    for house in grid.houses.values():
+        house.set_init()
+
+    for battery in grid.batteries.values():
+        battery.set_init()
+
     
     left_overs = []
 
@@ -14,6 +21,7 @@ def random_assignment(grid):
         # compare total output + new house output with total capacity battery.
         # append to list if not house not assigned to battery
         new_output = battery.total_output + float(house.output)
+        # print(f"new output: {new_output}, battery capacity: {battery.capacity}")
         if new_output >= float(battery.capacity):
             left_overs.append(house)
         else:
@@ -36,7 +44,7 @@ def random_assignment(grid):
 
     # check if list left_overs and reassigned_houses same lenght, if so: there is a solution
     remaining = len(left_overs) - len(reassigned_houses)
-    print(remaining)
+    # print(remaining)
     if remaining == 0:
         return True
     else:

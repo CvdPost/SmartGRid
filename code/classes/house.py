@@ -12,5 +12,8 @@ class House():
         self.costs_house = (9 * distance)
         return self.costs_house
 
+    def set_init(self):
+        self.costs_house = 0
+
     def __repr__(self):
         return f"{self.id}"

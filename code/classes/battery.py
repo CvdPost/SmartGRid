@@ -24,5 +24,10 @@ class Battery():
         self.total_output = self.total_output + float(house.output)
         return self.total_output
 
+    def set_init(self):
+        self.connect.clear()
+        self.total_output = 0
+
+
     def __repr__(self):
         return f"{self.id}"
