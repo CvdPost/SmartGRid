@@ -5,12 +5,9 @@ class DepthFirst:
     """
     A Depth First algorithm that builds a stack of grids with a unique distribution of battery connections
     """
-    def __init__(self, grid, house, battery):
+    def __init__(self, grid):
         self.grid = copy.deepcopy(grid)
-        self.house = house
-        self.battery = battery
         self.states = [copy.deepcopy(self.grid)]
-
         self.best_solution = None
         self.best_costs = float('inf')
 
@@ -29,15 +26,18 @@ class DepthFirst:
             new_grid = copy.deepcopy(grid)
             new_grid.batteries[valid_battery.id].set_connection(house) 
             self.states.append(new_grid)
-        print(states)
+
+        print('states', len(self.states))
 
 
     def check_solution(self, new_grid):
         """
         Checks and accepts better solutions than the current solution.
         """
-        new_costs = new_grid.total_costs #or use grid_costs()?
+        new_costs = new_grid.grid_costs() #or use grid_costs()?
         old_costs = self.best_costs
+        print('old',old_costs)
+        print('new',new_costs)
 
         #Looking for lower costs, so:
         if new_costs <= old_costs:
@@ -58,7 +58,7 @@ class DepthFirst:
                 self.build_children(new_grid, house)
             else:
                 # Stop if we find a solution
-                break
+                # break
 
                 # or continue looking for better graph
                 self.check_solution(new_grid)

@@ -7,7 +7,7 @@ class House():
         self.costs_house = 0
         self.connected = False
 
-    def connected(self):
+    def connected_value(self):
         self.connected = True
 
     def cable_costs_house(self, battery):

@@ -7,12 +7,11 @@ class Battery():
         self.connect = []
         self.total_output = 0
         self.installation_costs = 5000
-
-
+        
     def set_connection(self, house):
         # connect houses to batteries
         self.connect.append(house)
-        house.connected()
+        house.connected_value()
  
     def is_connected(self, house):
         # check if connection is valid

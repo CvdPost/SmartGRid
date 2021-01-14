@@ -30,6 +30,8 @@ def random_assignment(grid):
             battery.connected_output(house)
             battery.set_connection(house)
 
+        print('first', house.connected)
+
     reassigned_houses = []
 
     # reasigning left over houses
