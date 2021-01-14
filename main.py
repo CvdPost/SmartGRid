@@ -27,14 +27,13 @@ if __name__ == "__main__":
     while random.random_assignment(test_grid) == False:
         print("LOSERS", test_grid.total_costs)
         random.random_assignment(test_grid)
-
    
     #Creating a visualisation
     output_file(f"{data_folder}.html")
 
     # visualise.visualise(test_grid, data_folder)
 
-    # calculates total costs and gerenarest output file
+    # calculates total costs and generates output file
     test_grid.grid_costs()
     test_grid.output_file()
     print("SOLUTION")
