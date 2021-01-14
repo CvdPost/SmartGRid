@@ -37,6 +37,15 @@ class Grid():
 
         return houses
     
+    def get_unconnected_house(self):
+        """
+        Returns next unconnected house
+        """
+        for house in self.houses.values():
+            if not house.connected:
+                return house
+        return None
+        
     def grid_costs(self):
         fixed_costs = 0
         variable_costs = 0

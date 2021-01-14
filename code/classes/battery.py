@@ -12,6 +12,7 @@ class Battery():
     def set_connection(self, house):
         # connect houses to batteries
         self.connect.append(house)
+        house.connected()
  
     def is_connected(self, house):
         # check if connection is valid

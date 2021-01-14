@@ -16,6 +16,8 @@ def random_assignment(grid):
     left_overs = []
 
     for house in grid.houses.values():
+
+        house.get_possibilities(grid.batteries)
         battery = random.choice(list(grid.batteries.values()))
 
         # compare total output + new house output with total capacity battery.
