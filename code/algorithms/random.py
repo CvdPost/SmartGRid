@@ -27,7 +27,6 @@ def random_assignment(grid):
         if new_output >= float(battery.capacity):
             left_overs.append(house)
         else:
-            battery.connected_output(house)
             battery.set_connection(house)
 
         print('first', house.connected)
@@ -41,7 +40,6 @@ def random_assignment(grid):
             
             # if new_output smaller than capacity add house to reassigned list and break out 
             if new_output < float(battery.capacity):
-                battery.connected_output(house)
                 battery.set_connection(house)
                 reassigned_houses.append(house)
                 break

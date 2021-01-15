@@ -41,11 +41,18 @@ class Grid():
         """
         Returns next unconnected house
         """
+        print()
+        print("***********************************************")
+        print('select one of these houses:')
         for house in self.houses.values():
             print('self.houses.values', self.houses.values())
             print('house.connected', house.connected)
+            print(house, house.connected)
             if not house.connected:
+                print("***********************************************")
                 return house
+        print("***********************************************")
+        print()
         return None
         
     def grid_costs(self):
@@ -82,5 +89,6 @@ class Grid():
             json.dump(grid_list, outfile, indent=4)
 
         # print(self.total_costs)
-    def __repr__():
-        return str(self.houses)
+
+    def __repr__(self):
+        return str(self.batteries)

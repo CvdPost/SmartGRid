@@ -33,18 +33,13 @@ class House():
             # print('capacity', float(option.capacity))
             if new_output > float(option.capacity):
                 unavailable_options.add(option) #get value method?
-            else:
-                option.connected_output(self) 
-                print('total output:', option.total_output)
-
-            print('   ')
-        print('unavailable:', unavailable_options)
-        print(list(available_options - unavailable_options))
-        return list(available_options - unavailable_options)   
-        
+            # else: 
+            #     option.connected_output(self)
+        return list(available_options - unavailable_options)
+   
     def set_init(self):
         self.costs_house = 0
         self.connected = False
 
     def __repr__(self):
-        return f"{self.id}"
+        return f"H{self.id} Output:{self.output}"

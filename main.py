@@ -35,8 +35,8 @@ if __name__ == "__main__":
     
     depth = depth_first.DepthFirst(test_grid)
     depth.run()
-    print('best sol', depth.best_solution)
-    print('best costs', depth.best_costs)
+    # print('best sol', depth.best_solution)
+    # print('best costs', depth.best_costs)
 
      
     # ------------------------------ BREADTH FIRST ------------------------------ #

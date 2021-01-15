@@ -11,6 +11,7 @@ class Battery():
     def set_connection(self, house):
         # connect houses to batteries
         self.connect.append(house)
+        self.connected_output(house)
         house.connected_value()
  
     def is_connected(self, house):
@@ -30,4 +31,4 @@ class Battery():
 
 
     def __repr__(self):
-        return f"{self.id}"
+        return f"total output:{self.total_output} connections: {self.connect}"
