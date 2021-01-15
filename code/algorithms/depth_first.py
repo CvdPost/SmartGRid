@@ -20,22 +20,22 @@ class DepthFirst:
         """
         # Retrieve all valid possible batteries for the house.
 
-        print("building children:")
-        print('-----------')
-        print(grid)
-        print(house)
+        # print("building children:")
+        # print('-----------')
+        # print(grid)
+        # print(house)
         valid_batteries = house.get_possibilities(grid.batteries)
         # print('valid batteries:', valid_batteries)
 
         # Add an instance of the grid to the stack, with a unique battery assigned to each house
         for valid_battery in valid_batteries:
             
-            print("!!!test!!!")
+            # print("!!!test!!!")
+            grid.batteries[valid_battery.id].set_connection(house) 
             new_grid = copy.deepcopy(grid)
-            new_grid.batteries[valid_battery.id].set_connection(house) 
             self.states.append(new_grid)
 
-        # print('states', len(self.states))
+        print('states', len(self.states))
         
 
 
@@ -49,7 +49,7 @@ class DepthFirst:
         # print('new',new_costs)
 
         #Looking for lower costs, so:
-        if new_costs <= old_costs:
+        if new_costs < old_costs:
             self.best_solution = new_grid
             self.best_costs = new_costs
             # print(f"New best costs: {self.best_costs}")
@@ -62,42 +62,46 @@ class DepthFirst:
         Runs the algorithm until all possible states are visisted.
         """
         while self.states:
-            print('start:')
-            print('--------')
-            print('list states:', self.states)
-            print('length states', len(self.states))
-            print('=========================================================')
+            # print('start:')
+            # print('--------')
+            # print('list states:', self.states)
+            # print('length states', len(self.states))
+            # print('=========================================================')
             new_grid = self.get_next_state()
 
-            input()
+            # input()
             
             house = new_grid.get_unconnected_house()
-            print('unconnected house', house)
+            # print('unconnected house', house)
             
 
-            print('house assignment:')
-            print('--------')
-            print('state:', new_grid)
-            print('house id:', house)
-            print('=========================================================')
+            # print('house assignment:')
+            # print('--------')
+            # print('state:', new_grid)
+            # print('house id:', house)
+            # print('=========================================================')
+            # input()
             if house is not None:
                 self.build_children(new_grid, house)
-                print('build children:')
-                print('--------')
-                print('state:', self.states)
-                print('=========================================================')
+                # print('build children:')
+                # print('--------')
+                # print('state:', self.states)
+                # print('=========================================================')
+                # input()
             else:
                 # Stop if we find a solution
                 # break
 
                 # or continue looking for better graph
                 self.check_solution(new_grid)
-            print('end:')
-            print('--------')
-            print('list states:', self.states)
-            print('length states', len(self.states))
-            print('=========================================================')
-            input()
+            #     print(self.best_solution)
+                input()
+            # print('end:')
+            # print('--------')
+            # print('list states:', self.states)
+            # print('length states', len(self.states))
+            # print('=========================================================')
+            # input()
         # Update the input graph with the best result found.
         self.grid = self.best_solution
         print('result', self.best_solution)

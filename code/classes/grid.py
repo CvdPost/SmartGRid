@@ -41,18 +41,18 @@ class Grid():
         """
         Returns next unconnected house
         """
-        print()
-        print("***********************************************")
-        print('select one of these houses:')
+        # print()
+        # print("***********************************************")
+        # print('select one of these houses:')
         for house in self.houses.values():
-            print('self.houses.values', self.houses.values())
-            print('house.connected', house.connected)
-            print(house, house.connected)
+            # print('self.houses.values', self.houses.values())
+            # print('house.connected', house.connected)
+            # print(house, house.connected)
             if not house.connected:
-                print("***********************************************")
+                # print("***********************************************")
                 return house
-        print("***********************************************")
-        print()
+        # print("***********************************************")
+        # print()
         return None
         
     def grid_costs(self):

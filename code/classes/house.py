@@ -21,15 +21,15 @@ class House():
         based on current capacity
         """
         available_options = set(options.values()) #5 batteries
-        print('available battteries:', available_options)
+        # print('available battteries:', available_options)
         unavailable_options = set()
 
         #add to unavailable_options when house output + current output of battery x > max capacity battery x
         for option in options.values():
             new_output = option.total_output + float(self.output)
-            print('house id, self.output', self.id, self.output)
-            print('option', option)
-            print('new_output', new_output)
+            # print('house id, self.output', self.id, self.output)
+            # print('option', option)
+            # print('new_output', new_output)
             # print('capacity', float(option.capacity))
             if new_output > float(option.capacity):
                 unavailable_options.add(option) #get value method?
