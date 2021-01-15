@@ -20,14 +20,16 @@ class DepthFirst:
         """
         # Retrieve all valid possible batteries for the house.
         valid_batteries = house.get_possibilities(grid.batteries)
+        # print('valid batteries:', valid_batteries)
 
         # Add an instance of the grid to the stack, with a unique battery assigned to each house
         for valid_battery in valid_batteries:
+            
             new_grid = copy.deepcopy(grid)
             new_grid.batteries[valid_battery.id].set_connection(house) 
             self.states.append(new_grid)
 
-        print('states', len(self.states))
+        # print('states', len(self.states))
 
 
     def check_solution(self, new_grid):
@@ -36,14 +38,14 @@ class DepthFirst:
         """
         new_costs = new_grid.grid_costs() #or use grid_costs()?
         old_costs = self.best_costs
-        print('old',old_costs)
-        print('new',new_costs)
+        # print('old',old_costs)
+        # print('new',new_costs)
 
         #Looking for lower costs, so:
         if new_costs <= old_costs:
             self.best_solution = new_grid
             self.best_costs = new_costs
-            print(f"New best costs: {self.best_costs}")
+            # print(f"New best costs: {self.best_costs}")
     
     def run(self):
         """
@@ -52,7 +54,10 @@ class DepthFirst:
         while self.states:
             new_grid = self.get_next_state()
 
+            input()
             house = new_grid.get_unconnected_house()
+            print('unconnected house', house)
+            
 
             if house is not None:
                 self.build_children(new_grid, house)

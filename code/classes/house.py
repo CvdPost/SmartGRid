@@ -21,16 +21,27 @@ class House():
         based on current capacity
         """
         available_options = set(options.values()) #5 batteries
-
+        print('available battteries:', available_options)
         unavailable_options = set()
 
         #add to unavailable_options when house output + current output of battery x > max capacity battery x
         for option in options.values():
             new_output = option.total_output + float(self.output)
+            print('house id, self.output', self.id, self.output)
+            print('option', option)
+            print('new_output', new_output)
+            # print('capacity', float(option.capacity))
             if new_output > float(option.capacity):
                 unavailable_options.add(option) #get value method?
+            else:
+                option.connected_output(self) 
+                print('total output:', option.total_output)
+
+            print('   ')
+        print('unavailable:', unavailable_options)
+        print(list(available_options - unavailable_options))
         return list(available_options - unavailable_options)   
-   
+        
     def set_init(self):
         self.costs_house = 0
         self.connected = False

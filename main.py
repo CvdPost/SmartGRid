@@ -54,7 +54,7 @@ if __name__ == "__main__":
     # calculates total costs and generates output file
     test_grid.grid_costs()
     test_grid.output_file()
-    print("SOLUTION")
+    # print("SOLUTION")
     print("--- %s seconds ---" % (time.time() - start_time))
 
     
