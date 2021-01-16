@@ -69,7 +69,7 @@ class Grid():
 
         return self.total_costs
 
-    def output_file(self):
+    def output_file(self, name):
         grid_list = [] 
 
         grid_dict = {'district': self.name, 'costs-shared': self.total_costs}
@@ -85,7 +85,7 @@ class Grid():
 
             grid_list.append(dict_battery)
 
-        with open('data.json', 'w') as outfile:
+        with open(f'{name}-data.json', 'w') as outfile:
             json.dump(grid_list, outfile, indent=4)
 
         # print(self.total_costs)

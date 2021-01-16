@@ -42,4 +42,4 @@ class House():
         self.connected = False
 
     def __repr__(self):
-        return f"H{self.id} Output:{self.output}"
+        return f"H{self.id}"

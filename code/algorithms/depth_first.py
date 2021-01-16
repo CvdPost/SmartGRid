@@ -31,8 +31,8 @@ class DepthFirst:
         for valid_battery in valid_batteries:
             
             # print("!!!test!!!")
-            grid.batteries[valid_battery.id].set_connection(house) 
             new_grid = copy.deepcopy(grid)
+            new_grid.batteries[valid_battery.id].set_connection(new_grid.houses[house.id]) 
             self.states.append(new_grid)
 
         print('states', len(self.states))
@@ -53,7 +53,8 @@ class DepthFirst:
             self.best_solution = new_grid
             self.best_costs = new_costs
             # print(f"New best costs: {self.best_costs}")
-            print(f"New cost Found: {self.best_costs}")
+            # print(f"New cost Found: {self.best_costs}")
+            new_grid.output_file('depth_first')
         else:
             print('no better cost found')
     
@@ -94,8 +95,8 @@ class DepthFirst:
 
                 # or continue looking for better graph
                 self.check_solution(new_grid)
-            #     print(self.best_solution)
-                input()
+                # print(self.best_solution)
+                # input()
             # print('end:')
             # print('--------')
             # print('list states:', self.states)
