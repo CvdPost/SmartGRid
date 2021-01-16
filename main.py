@@ -26,17 +26,17 @@ if __name__ == "__main__":
 
     # ------------------------------ RANDOM ------------------------------ #
    
-    while random.random_assignment(test_grid) == False:
-        print("LOSERS", test_grid.total_costs)
-        random.random_assignment(test_grid)
-    # calculates total costs and generates output file
-    test_grid.grid_costs()
-    test_grid.output_file('random')
+    # while random.random_assignment(test_grid) == False:
+    #     print("LOSERS", test_grid.total_costs)
+    #     random.random_assignment(test_grid)
+    # # calculates total costs and generates output file
+    # test_grid.grid_costs()
+    # test_grid.output_file('random')
     
     # ------------------------------ DEPTH FIRST ------------------------------ #
     
-    # depth = depth_first.DepthFirst(test_grid)
-    # depth.run()
+    depth = depth_first.DepthFirst(test_grid)
+    depth.run()
     # print('best sol', depth.best_solution)
     # print('best costs', depth.best_costs)
 

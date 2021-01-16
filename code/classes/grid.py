@@ -70,6 +70,11 @@ class Grid():
         return self.total_costs
 
     def output_file(self, name):
+        '''
+        Creates an output file for the "solution" that is found.
+        Provide the method with a string of the algorithm name as argument.
+        '''
+        
         grid_list = [] 
 
         grid_dict = {'district': self.name, 'costs-shared': self.total_costs}
