@@ -13,6 +13,7 @@ class Battery():
         self.connect.append(house)
         self.connected_output(house)
         house.connected_value()
+        house.cable_grid(self)
  
     def is_connected(self, house):
         # check if connection is valid

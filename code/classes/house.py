@@ -6,6 +6,7 @@ class House():
         self.output = output
         self.costs_house = 0
         self.connected = False
+        self.cable_coords = []
 
     def connected_value(self):
         self.connected = True
@@ -20,24 +21,73 @@ class House():
         Returns a list of all available batteries that can be assigned to a given house, 
         based on current capacity
         """
-        available_options = set(options.values()) #5 batteries
-        # print('available battteries:', available_options)
+        available_options = set(options.values())
+
         unavailable_options = set()
 
         #add to unavailable_options when house output + current output of battery x > max capacity battery x
         for option in options.values():
             new_output = option.total_output + float(self.output)
-            # print('house id, self.output', self.id, self.output)
-            # print('option', option)
-            # print('new_output', new_output)
-            # print('capacity', float(option.capacity))
             if new_output > float(option.capacity):
-                unavailable_options.add(option) #get value method?
+                unavailable_options.add(option)
             # else: 
             #     option.connected_output(self)
+
         return list(available_options - unavailable_options)
-   
+
+    def cable_grid(self, battery):
+        # locatie huis = start positie
+        # locatie battery = eind positie
+
+        start_y_location = int(self.y_location)
+        end_y_location = int(battery.y_location)
+
+        start_x_location = int(self.x_location)
+        end_x_location = int(battery.x_location)
+
+        cable_location = f"{start_x_location}, {start_y_location}"
+
+        self.cable_coords = [cable_location]
+
+        # Add coordinate steps for y to the list
+        while start_y_location != end_y_location:
+            if start_y_location > end_y_location:
+                start_y_location -= 1
+            else:
+                start_y_location += 1
+
+            cable_location = f"{start_x_location}, {start_y_location}"
+            self.cable_coords.append(cable_location)
+
+        # Add coordinates steps for x to the list
+        while start_x_location != end_x_location:
+            if start_x_location > end_x_location:
+                start_x_location -= 1
+            else:
+                start_x_location += 1
+
+            cable_location = f"{start_x_location}, {start_y_location}"
+            self.cable_coords.append(cable_location)
+            
+        print(self.cable_coords)
+
+        # check of eind positie groter of kleiner is dan start positie
+        # voor y coord in start positie:
+        #     y coord van start positie +/- 1
+        #     totdat y coord start == y coord van eind positie
+        
+        # voor x coord in start positie:
+        #     x coord van start positie +/- 1
+        #     tot dat x coord sart == x coord van eind positie
+        # return lijst met de coords
+
+
+
     def set_init(self):
+        '''
+        Reset the class object
+        '''
+        
         self.costs_house = 0
         self.connected = False
 

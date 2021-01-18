@@ -10,6 +10,9 @@ class BreadthFirst(DepthFirst):
     """
     #pas aan
 
+    def __init__(self, *args, **kwargs):
+        super(BreadthFirst, self).__init__(*args, **kwargs)
+        self.name = 'Breadth_first'
 
     def get_next_state(self):
 

@@ -69,7 +69,7 @@ class Grid():
 
         return self.total_costs
 
-    def output_file(self, name):
+    def output_file(self, algorithm_name):
         '''
         Creates an output file for the "solution" that is found.
         Provide the method with a string of the algorithm name as argument.
@@ -85,12 +85,13 @@ class Grid():
 
             for house in battery.connect:
                 # still have to add cables 
-                dict_house = {'location': f"{house.x_location}, {house.y_location}", 'house': house.output}
+                dict_house = {'location': f"{house.x_location}, {house.y_location}", 'house': house.output. 'cables': []}
+                
                 dict_battery['houses'].append(dict_house)
 
             grid_list.append(dict_battery)
 
-        with open(f'{name}-data.json', 'w') as outfile:
+        with open(f'{algorithm_name}-data.json', 'w') as outfile:
             json.dump(grid_list, outfile, indent=4)
 
         # print(self.total_costs)
