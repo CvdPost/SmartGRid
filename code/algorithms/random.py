@@ -29,7 +29,6 @@ def random_assignment(grid):
         else:
             battery.set_connection(house)
 
-        print('first', house.connected)
 
     reassigned_houses = []
 
@@ -46,7 +45,7 @@ def random_assignment(grid):
 
     # check if list left_overs and reassigned_houses same lenght, if so: there is a solution
     remaining = len(left_overs) - len(reassigned_houses)
-    # print(remaining)
+    
     if remaining == 0:
         return True
     else:

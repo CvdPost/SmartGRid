@@ -12,9 +12,12 @@ class House():
         self.connected = True
 
     def cable_costs_house(self, battery):
-        distance = abs(int(battery.x_location) - int(self.x_location)) + abs(int(battery.y_location) - int(self.y_location))
-        self.costs_house = (9 * distance)
-        return self.costs_house
+        # distance = abs(int(battery.x_location) - int(self.x_location)) + abs(int(battery.y_location) - int(self.y_location))
+        # self.costs_house = (9 * distance)
+        # return self.costs_house
+
+        self.costs_house = 9 * len(self.cable_coords)
+        print(self.costs_house)
 
     def get_possibilities(self, options):
         """
@@ -36,8 +39,9 @@ class House():
         return list(available_options - unavailable_options)
 
     def cable_grid(self, battery):
-        # locatie huis = start positie
-        # locatie battery = eind positie
+        '''
+        Calculates every coordinate of the cable that connects the house with a battery.
+        '''
 
         start_y_location = int(self.y_location)
         end_y_location = int(battery.y_location)
@@ -56,6 +60,12 @@ class House():
             else:
                 start_y_location += 1
 
+            if cable_location in lijst van batterij locaties:
+                if start_x_location > end_x_location:
+                    start_x_location -= 1
+                else:
+                    start_x_location += 1
+
             cable_location = f"{start_x_location}, {start_y_location}"
             self.cable_coords.append(cable_location)
 
@@ -69,18 +79,6 @@ class House():
             cable_location = f"{start_x_location}, {start_y_location}"
             self.cable_coords.append(cable_location)
             
-        print(self.cable_coords)
-
-        # check of eind positie groter of kleiner is dan start positie
-        # voor y coord in start positie:
-        #     y coord van start positie +/- 1
-        #     totdat y coord start == y coord van eind positie
-        
-        # voor x coord in start positie:
-        #     x coord van start positie +/- 1
-        #     tot dat x coord sart == x coord van eind positie
-        # return lijst met de coords
-
 
 
     def set_init(self):

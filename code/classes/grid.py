@@ -41,18 +41,10 @@ class Grid():
         """
         Returns next unconnected house
         """
-        # print()
-        # print("***********************************************")
-        # print('select one of these houses:')
+        
         for house in self.houses.values():
-            # print('self.houses.values', self.houses.values())
-            # print('house.connected', house.connected)
-            # print(house, house.connected)
             if not house.connected:
-                # print("***********************************************")
                 return house
-        # print("***********************************************")
-        # print()
         return None
         
     def grid_costs(self):
@@ -61,6 +53,7 @@ class Grid():
 
         for battery in self.batteries.values():
             for house in battery.connect:
+                house.cable_grid(battery)
                 house.cable_costs_house(battery)
                 variable_costs = variable_costs + house.costs_house
             fixed_costs = fixed_costs + battery.installation_costs
@@ -85,8 +78,12 @@ class Grid():
 
             for house in battery.connect:
                 # still have to add cables 
-                dict_house = {'location': f"{house.x_location}, {house.y_location}", 'house': house.output. 'cables': []}
-                
+                dict_house = {'location': f"{house.x_location}, {house.y_location}", 'house': house.output, 'cables': house.cable_coords}
+
+                # for coordinate in house.cable_coords:
+                #     dict_cable = {'cable': coordinate}
+                #     dict_house['cables'].append(dict_cable)
+
                 dict_battery['houses'].append(dict_house)
 
             grid_list.append(dict_battery)
