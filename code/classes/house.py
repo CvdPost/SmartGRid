@@ -106,22 +106,53 @@ class House():
                     coord = cable_location.split(',')
                     x_location = int(coord[0])
                     y_location = int(coord[1])
-                    print(i, coord[0],coord[1])
-                    print(type(self.cable_coords[i-1].split(',')[0]))
-                    print(type(x_location))
+
+                    # print(list, list(cable_location))
+                    # Moving vertically
+                    print('cable_coord', self.cable_coords[i-1].split(',')[0])
+                    print('x_loc', x_location)
                     if int(self.cable_coords[i-1].split(',')[0]) == x_location:
+                        # Creating a detour in the direction of the battery
                         if end_location > int(x_location):
                             x_location += 1
                             print(x_location)
                         else:
                             x_location -= 1
                         print(self.cable_coords)
-                        self.cable_coords = self.cable_coords[:i] + f"{x_location},{y_location}" + self.cable_coords[i+1:]
+                        
+                        detour_point = []
+                        detour_point.append(x_location)
+                        detour_point.append(y_location)
+
+                        detour_point = [str(','.join(map(str, detour_point)))]
+                        print('detour point x:', detour_point)
+                        self.cable_coords = self.cable_coords[:i] + detour_point + self.cable_coords[i+1:]
+                        
+                    # Moving horizontally:
+                        print('cable_coord', self.cable_coords[i-1].split(',')[1])
+                        print('y_loc', y_location)
+
+                    elif int(self.cable_coords[i-1].split(',')[1]) == y_location:
+                        
+                        print(self.cable_coords[i-1].split(',')[1])
+                        print('hoi')
+                        # Creating a detour in the direction of the battery
+                        if end_location > int(y_location):
+                            y_location += 1
+                            print(y_location)
+                        else:
+                            y_location -= 1
                         print(self.cable_coords)
-                        input()
-                    print('test')
+                        detour_point = []
+                        detour_point.append(x_location)
+                        detour_point.append(y_location)
+
+                        detour_point = [str(','.join(map(str, detour_point)))]
+                        print('detour point y:', detour_point)
+                        self.cable_coords = self.cable_coords[:i] + detour_point + self.cable_coords[i+1:]
+                    
                     input()
-                    # # check if going vertical
+                        
                     # if i-1 de x locati==e  i de xlocatie:
                     #     dan omweg lings of rechts, dus x locatie aanpassen in de richting van eindlocatie
                     # # check if going horizontal
