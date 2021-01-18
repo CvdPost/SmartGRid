@@ -104,3 +104,9 @@
     # data['location'] = battery.x_location, battery.y_location
     # data['capacity'] = 
     # data['houses'] = 
+
+
+    # hemels breedte afstand tussen huis en battery (manhattan distance)
+        # distance = abs(int(battery.x_location) - int(self.x_location)) + abs(int(battery.y_location) - int(self.y_location))
+        # self.costs_house = (9 * distance)
+        # return self.costs_house

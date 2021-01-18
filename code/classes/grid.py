@@ -53,7 +53,7 @@ class Grid():
 
         for battery in self.batteries.values():
             for house in battery.connect:
-                house.cable_grid(battery)
+                house.cable_grid(battery, self.batteries)
                 house.cable_costs_house(battery)
                 variable_costs = variable_costs + house.costs_house
             fixed_costs = fixed_costs + battery.installation_costs
@@ -74,16 +74,11 @@ class Grid():
         grid_list.append(grid_dict)
 
         for battery in self.batteries.values():
-            dict_battery = {'location': f"{battery.x_location}, {battery.y_location}", 'capacity': battery.capacity, 'houses': []}
+            dict_battery = {'location': f"{battery.x_location},{battery.y_location}", 'capacity': battery.capacity, 'houses': []}
 
             for house in battery.connect:
                 # still have to add cables 
-                dict_house = {'location': f"{house.x_location}, {house.y_location}", 'house': house.output, 'cables': house.cable_coords}
-
-                # for coordinate in house.cable_coords:
-                #     dict_cable = {'cable': coordinate}
-                #     dict_house['cables'].append(dict_cable)
-
+                dict_house = {'location': f"{house.x_location},{house.y_location}", 'house': house.output, 'cables': house.cable_coords}
                 dict_battery['houses'].append(dict_house)
 
             grid_list.append(dict_battery)
