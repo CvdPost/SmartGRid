@@ -6,6 +6,7 @@ class DepthFirst:
     """
     A Depth First algorithm that builds a stack of grids with a unique distribution of battery connections
     """
+    
     def __init__(self, grid):
         self.grid = copy.deepcopy(grid)
         self.states = [copy.deepcopy(self.grid)]
@@ -57,7 +58,7 @@ class DepthFirst:
         """
         Runs the algorithm until all possible states are visisted.
         """
-        
+
         while self.states:
             new_grid = self.get_next_state()
             house = new_grid.get_unconnected_house()
