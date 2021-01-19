@@ -7,6 +7,8 @@ class Battery():
         self.connect = []
         self.total_output = 0
         self.installation_costs = 5000
+        self.all_cables = []
+        self.cable_costs = 0
         
     def set_connection(self, house):
         # connect houses to batteries
@@ -29,6 +31,24 @@ class Battery():
         self.connect.clear()
         self.total_output = 0
 
+    def filtered_cables(self, house):
+        # list of all cable coordinates to battery
+        new_list = house.cable_coords
+
+        for item in new_list:
+            self.all_cables.append(item)
+
+        # remove all duplicates from list 
+        list(dict.fromkeys(self.all_cables))
+
+    def cable_costs_house(self):
+        """
+        Calcutes the cost of a cable per line segment
+        """
+
+        self.cable_costs = 9 * (len(self.all_cables) - 1)
+
+        # print('cablecosts', self.cable_costs)
 
     def __repr__(self):
         return f"total output:{self.total_output} connections: {self.connect}"

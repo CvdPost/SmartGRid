@@ -49,5 +49,5 @@ def random_assignment(grid):
     if remaining == 0:
         return True
     else:
-        return False
+        random.randomize(left_overs)
         

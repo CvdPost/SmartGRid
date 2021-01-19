@@ -53,9 +53,9 @@ class Grid():
 
         for battery in self.batteries.values():
             for house in battery.connect:
-                house.cable_grid(battery, self.batteries)
-                house.cable_costs_house(battery)
-                variable_costs = variable_costs + house.costs_house
+                house.cable_grid(battery)
+            battery.cable_costs_house()
+            variable_costs = variable_costs + battery.cable_costs
             fixed_costs = fixed_costs + battery.installation_costs
         
         self.total_costs = fixed_costs + variable_costs
@@ -63,10 +63,10 @@ class Grid():
         return self.total_costs
 
     def output_file(self, algorithm_name):
-        '''
+        """
         Creates an output file for the "solution" that is found.
         Provide the method with a string of the algorithm name as argument.
-        '''
+        """
         
         grid_list = [] 
 
