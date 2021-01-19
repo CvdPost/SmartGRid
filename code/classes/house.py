@@ -8,29 +8,33 @@ class House():
         self.cable_coords = []
 
     def connected_value(self):
+        """ 
+        Initial value is False sets value to True.
+        """
+
         self.connected = True
 
     def get_possibilities(self, options):
         """
         Returns a list of all available batteries that can be assigned to a given house, 
-        based on current capacity
+        based on current capacity.
         """
+
         available_options = set(options.values())
         unavailable_options = set()
 
-        #add to unavailable_options when house output + current output of battery x > max capacity battery x
+        # check capacity constraint of battery when house is added.
         for option in options.values():
             new_output = option.total_output + float(self.output)
             if new_output > float(option.capacity):
                 unavailable_options.add(option)
-            # else: 
-            #     option.connected_output(self)
-
+ 
         return list(available_options - unavailable_options)
-        
+
     def cable_grid(self, battery):
         """
-        Calculates every coordinate of the cable that connects the house with a battery.
+        Adds every coordinate of the cable that connects the house with a battery. 
+        Passes these coordinates to the battery.
         """
 
         start_y_location = int(self.y_location)

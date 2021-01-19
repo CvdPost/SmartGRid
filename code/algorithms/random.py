@@ -31,11 +31,6 @@ def random_assignment(grid):
             left_overs.append(house)
         else:
             battery.set_connection(house)
-    
-    #Keep randomly assigning houses to batteries until leftovers list is empy(?)
-    # while left_overs:
-    #     random.randomize(left_overs)
-
 
     reassigned_houses = []
 
@@ -59,5 +54,4 @@ def random_assignment(grid):
         return False
         # random.randomize(left_overs)
 
-# def random_reassignment
         

@@ -1,45 +1,51 @@
-<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>0</x><y>92</y><w>170</w><h>170</h></coordinates><panel_attributes>Grid 
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>0</x><y>92</y><w>200</w><h>200</h></coordinates><panel_attributes>Grid 
 --
-nodes: [Battery]
-nodes: [House]
+nodes: {Battery}
+nodes: {House}
+name: string
+total_costs: int
+
 --
 Methods:
-load_batteries: battery file
-load_houses: houses file
-get_unconnected houses: self
-grid_costs: self
-save_output : filename</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>260</x><y>92</y><w>170</w><h>230</h></coordinates><panel_attributes>Battery 
+load_batteries: (self, battery file)
+load_houses: (self, houses file)
+get_unconnected houses: (self)
+grid_costs: (self)
+output_file : (self, algorithm_name)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>260</x><y>92</y><w>180</w><h>290</h></coordinates><panel_attributes>Battery 
 --
-capacity: float
 x_location: int
 y_location: int
 id: int
+capacity: float
 connect: [house]
 total_output: float
 installation_costs: int
+all_cables: [cable_coords]
+cable_costs: int
+
 --
 Methods:
-set_connection: self, house
-is_connected: self, house
-connected_output: self, house
-set_init: self
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>500</x><y>92</y><w>190</w><h>250</h></coordinates><panel_attributes>House 
+set_connection: (self, house)
+is_connected: (self, house)
+connected_output: (self, house)
+filtered_cables: (self, house)
+cable_costs_house: (self)
+set_init: (self)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>500</x><y>92</y><w>190</w><h>220</h></coordinates><panel_attributes>House 
 --
-output: float
 x_location: float 
 y_location: float 
 id: int
 output: float
-costs_house: float
 connected: boolean
 cables: [cable_coords]
+
 --
 Methods 
-connected_value: self
-cable_costs_house: self, battery
-get_possibilities: self, options
-cable_grid: self, ??
-set_init: self
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>420</x><y>98</y><w>100</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-m1=0..n</panel_attributes><additional_attributes>10;10;80;10</additional_attributes></element><element><id>Relation</id><coordinates><x>160</x><y>98</y><w>120</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-m1=0..n</panel_attributes><additional_attributes>10;10;100;10</additional_attributes></element></diagram>
+connected_value: (self)
+get_possibilities: (self, options)
+cable_grid: (self, battery)
+set_init: (self)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>430</x><y>98</y><w>90</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+m1=0..n</panel_attributes><additional_attributes>10;10;70;10</additional_attributes></element><element><id>Relation</id><coordinates><x>190</x><y>98</y><w>90</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+m1=0..n</panel_attributes><additional_attributes>10;10;70;10</additional_attributes></element></diagram>

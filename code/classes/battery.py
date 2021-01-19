@@ -11,29 +11,37 @@ class Battery():
         self.cable_costs = 0
         
     def set_connection(self, house):
-        # connect houses to batteries
+        """ 
+        Creates list of connected houses to battery, calculates output of connected houses 
+        and sets house connection to True.
+        """
+
         self.connect.append(house)
         self.connected_output(house)
         house.connected_value()
  
     def is_connected(self, house):
-        # check if connection is valid
+        """ 
+        Returns boolean based on list of connected houses. 
+        """ 
+        
         if house in self.connect:
             return True
         return False
 
     def connected_output(self, house):
-        # Set the total output of every house connected to the battery
+        """ 
+        Sums output of connected houses.
+        """
+        
         self.total_output = self.total_output + float(house.output)
         return self.total_output
-
-    def set_init(self):
-        self.connect.clear()
-        self.total_output = 0
-        self.all_cables.clear()
-        self.cable_costs = 0
         
     def filtered_cables(self, house):
+        """
+        Removes duplicates from list of existing cable coordinates.
+        """
+
         # list of all cable coordinates to battery
         new_list = house.cable_coords
 
@@ -41,7 +49,7 @@ class Battery():
             self.all_cables.append(item)
 
         # remove all duplicates from list 
-        list(dict.fromkeys(self.all_cables))
+        self.all_cables = list(dict.fromkeys(self.all_cables))
 
     def cable_costs_house(self):
         """
@@ -50,7 +58,15 @@ class Battery():
 
         self.cable_costs = 9 * (len(self.all_cables) - 1)
 
-        # print('cablecosts', self.cable_costs)
+    def set_init(self):
+        """
+        Disconnect houses from batteries and sets output and costs to zero.
+        """
+        
+        self.connect.clear()
+        self.total_output = 0
+        self.all_cables.clear()
+        self.cable_costs = 0
 
     def __repr__(self):
         return f"total output:{self.total_output} connections: {self.connect}"

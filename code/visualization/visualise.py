@@ -4,7 +4,12 @@ from bokeh.models import SingleIntervalTicker, LinearAxis
 import math
 
 def visualise(grid, name):
+    """
+    Creates visualization based on coordinates from the connected houses to the batteries.
+    Sets same colours for battery with connected houses.
+    """
 
+    # list of colours for lines and batteries
     colours = ['fuchsia', 'darkturquoise', 'green', 'orange', 'red']
 
     p = figure(plot_width=1000, plot_height=800, title = f"Plot {name}")
@@ -14,11 +19,9 @@ def visualise(grid, name):
 
     # set color of gridlines
     p.ygrid.minor_grid_line_color = p.xgrid.minor_grid_line_color = 'whitesmoke'
-  
     
     # Plotting the batteries  (navy blue)
     for battery in grid.batteries.values(): 
-        # print(battery.x_location, battery.y_location)
         p.circle([battery.x_location], [battery.y_location], size=20, color=colours[(battery.id - 1)], alpha=1)
     
 

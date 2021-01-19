@@ -21,13 +21,9 @@ if __name__ == "__main__":
     # Create a grid from our data
     test_grid = grid.Grid(f"data/{data_folder}/{data_file}_houses.csv", f"data/{data_folder}/{data_file}_batteries.csv", data_folder)
     
-    #Randomly assign a house to one of the batteries
-    # test1 = random.random_assignment(test_grid)
-
     # ------------------------------ RANDOM ---------------------------------- #
    
     # while random.random_assignment(test_grid) == False:
-    #     # print("LOSERS", test_grid.total_costs)
     #     random.random_assignment(test_grid)
     # # calculates total costs and generates output file
     # test_grid.grid_costs()
@@ -39,7 +35,6 @@ if __name__ == "__main__":
     # depth.run()
     # print('best sol', depth.best_solution)
     # print('best costs', depth.best_costs)
-
      
     # ------------------------------ BREADTH FIRST ------------------------------ #
 
@@ -48,20 +43,16 @@ if __name__ == "__main__":
     # print('best sol', breadth.best_solution)
     # print('best costs', breadth.best_costs)
 
-
     # ------------------------------ RANDOMISE ---------------------------------- #
    
-
     randomise.random_assignment(test_grid)
-
 
     #Creating a visualisation
     output_file(f"{data_folder}.html")
 
     # visualise.visualise(test_grid, data_folder)
-
     
-    # print("SOLUTION")
+    # running time
     print("--- %s seconds ---" % (time.time() - start_time))
 
     

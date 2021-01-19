@@ -13,6 +13,7 @@ class Grid():
         """
         Load all the batteries into the grid.
         """
+
         batteries = {}
         with open(battery_file, 'r') as in_file:
             reader = csv.DictReader(in_file)
@@ -27,6 +28,7 @@ class Grid():
         """
         Load all the houses into the grid.
         """
+
         houses = {}
         counter = 1
         with open(house_file, 'r') as in_file:
@@ -39,15 +41,19 @@ class Grid():
     
     def get_unconnected_house(self):
         """
-        Returns next unconnected house
+        Returns next unconnected house, if all houses are connected returns None.
         """
-        
+
         for house in self.houses.values():
             if not house.connected:
                 return house
         return None
         
     def grid_costs(self):
+        """ 
+        Returns costs of connected cables and battery for whole grid.
+        """
+
         fixed_costs = 0
         variable_costs = 0
 
@@ -85,8 +91,6 @@ class Grid():
 
         with open(f'{algorithm_name}-data.json', 'w') as outfile:
             json.dump(grid_list, outfile, indent=4)
-
-        # print(self.total_costs)
 
     def __repr__(self):
         return str(self.batteries)

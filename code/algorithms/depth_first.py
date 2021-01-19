@@ -19,8 +19,8 @@ class DepthFirst:
         """
         Creates all possible child-states and adds them to the list of states.
         """
-        # Retrieve all valid possible batteries for the house.
-
+        
+        # Retrieve all valid possible batteries for the house
         valid_batteries = house.get_possibilities(grid.batteries)
 
         # Add an instance of the grid to the stack, with a unique battery assigned to each house
@@ -28,11 +28,7 @@ class DepthFirst:
             new_grid = copy.deepcopy(grid)
             new_grid.batteries[valid_battery.id].set_connection(new_grid.houses[house.id])
             self.states.append(new_grid)
-
-        print('states', len(self.states))
         
-
-
     def check_solution(self, new_grid):
         """
         Checks and accepts better solutions than the current solution.
@@ -40,7 +36,7 @@ class DepthFirst:
         new_costs = new_grid.grid_costs()
         old_costs = self.best_costs
 
-        #Looking for lower costs, so:
+        # checking for new best costs
         if new_costs < old_costs:
             self.best_solution = new_grid
             self.best_costs = new_costs
@@ -55,15 +51,12 @@ class DepthFirst:
         """
         while self.states:
             new_grid = self.get_next_state()
-            
             house = new_grid.get_unconnected_house()
 
+            # if all houses have a connection -> check solution 
             if house is not None:
                 self.build_children(new_grid, house)
             else:
-                # Stop if we find a solution
-                # break
-
                 self.check_solution(new_grid)
                 
         # Update the input graph with the best result found.
