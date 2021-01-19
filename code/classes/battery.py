@@ -30,7 +30,9 @@ class Battery():
     def set_init(self):
         self.connect.clear()
         self.total_output = 0
-
+        self.all_cables.clear()
+        self.cable_costs = 0
+        
     def filtered_cables(self, house):
         # list of all cable coordinates to battery
         new_list = house.cable_coords

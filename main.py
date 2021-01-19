@@ -1,7 +1,7 @@
 from code.classes import grid, house
 from code.visualization import visualise
 
-from code.algorithms import random, depth_first, breadth_first
+from code.algorithms import random, depth_first, breadth_first, randomise
 
 from bokeh.models import grids
 from bokeh.plotting import figure, output_file, show
@@ -24,14 +24,14 @@ if __name__ == "__main__":
     #Randomly assign a house to one of the batteries
     # test1 = random.random_assignment(test_grid)
 
-    # ------------------------------ RANDOM ------------------------------ #
+    # ------------------------------ RANDOM ---------------------------------- #
    
-    while random.random_assignment(test_grid) == False:
-        # print("LOSERS", test_grid.total_costs)
-        random.random_assignment(test_grid)
-    # calculates total costs and generates output file
-    test_grid.grid_costs()
-    test_grid.output_file('random')
+    # while random.random_assignment(test_grid) == False:
+    #     # print("LOSERS", test_grid.total_costs)
+    #     random.random_assignment(test_grid)
+    # # calculates total costs and generates output file
+    # test_grid.grid_costs()
+    # test_grid.output_file('random')
     
     # ------------------------------ DEPTH FIRST ------------------------------ #
     
@@ -48,10 +48,17 @@ if __name__ == "__main__":
     # print('best sol', breadth.best_solution)
     # print('best costs', breadth.best_costs)
 
+
+    # ------------------------------ RANDOMISE ---------------------------------- #
+   
+
+    randomise.random_assignment(test_grid)
+
+
     #Creating a visualisation
     output_file(f"{data_folder}.html")
 
-    visualise.visualise(test_grid, data_folder)
+    # visualise.visualise(test_grid, data_folder)
 
     
     # print("SOLUTION")
