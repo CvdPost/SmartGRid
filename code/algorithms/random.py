@@ -1,6 +1,9 @@
 import random
 import copy
 
+
+# Based on: https://github.com/minprog/radio_russia_demo/blob/college_2/code/algorithms/randomise.py
+
 def random_assignment(grid):
     """
     Randomly assign each house to one of the batteries
@@ -28,11 +31,15 @@ def random_assignment(grid):
             left_overs.append(house)
         else:
             battery.set_connection(house)
+    
+    #Keep randomly assigning houses to batteries until leftovers list is empy(?)
+    while left_overs:
+        random.randomize(left_overs)
 
 
     reassigned_houses = []
 
-    # reasigning left over houses
+    # reassigning left over houses
     for house in left_overs:
         for battery in grid.batteries.values():
             new_output = battery.total_output + float(house.output)
@@ -50,4 +57,6 @@ def random_assignment(grid):
         return True
     else:
         random.randomize(left_overs)
+
+def random_reassignment
         
