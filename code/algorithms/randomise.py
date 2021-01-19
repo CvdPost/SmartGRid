@@ -3,11 +3,22 @@ import copy
 
 
 # Based on: https://github.com/minprog/radio_russia_demo/blob/college_2/code/algorithms/randomise.py
+def randomise(grid):
+
+    while random_assignment(grid) == False:
+        random_assignment(grid)
+
+    print('calculating costs')
+    grid.grid_costs()
+
+    print('generating ouput .json')
+    grid.output_file('randomise')
 
 def random_assignment(grid):
     """
     Randomly assign each house to one of the batteries.
     """
+    clear_grid(grid)
     print('!!start!!')
     print('***************************')
     left_overs = []
@@ -33,10 +44,13 @@ def random_assignment(grid):
         
     # Randomize list of left over houses
     print(left_overs)
-    random_reassignment(grid, left_overs)
+
+    if random_reassignment(grid, left_overs):
+        return True
+    return False
+
     
-    grid.grid_costs()
-    grid.output_file('randomise')
+    
 
 
 def clear_grid(grid):
@@ -61,17 +75,16 @@ def random_reassignment(grid, left_overs):
         possible_batteries = house.get_possibilities(grid.batteries)
         # print('number of batteries:', len(possible_batteries), possible_batteries)
         if len(possible_batteries) == 0:
-            clear_grid(grid)
             # print('restart!')
             # input()
-            random_assignment(grid)
+            return False
         else:
             # print('assigned house')    
             battery = random.choice()
             battery.set_connection(house)
             left_overs.remove(house)
 
-
+    return True
 
 
         # new_output = battery.total_output + float(house.output)

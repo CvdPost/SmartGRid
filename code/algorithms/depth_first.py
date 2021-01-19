@@ -1,3 +1,4 @@
+from code.visualization import visualise
 import copy
 
 # Based on https://github.com/minprog/radio_russia_demo/blob/college_2/code/algorithms/depth_first.py
@@ -29,7 +30,7 @@ class DepthFirst:
             new_grid.batteries[valid_battery.id].set_connection(new_grid.houses[house.id])
             self.states.append(new_grid)
 
-        print('states', len(self.states))
+        # print('states', len(self.states))
         
 
 
@@ -46,6 +47,8 @@ class DepthFirst:
             self.best_costs = new_costs
             print(f"New best costs: {self.best_costs}")
             new_grid.output_file(self.name)
+            visualise.visualise(new_grid, self.name)
+            # input()
         else:
             print('no better cost found')
     

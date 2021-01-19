@@ -41,7 +41,7 @@ class Battery():
             self.all_cables.append(item)
 
         # remove all duplicates from list 
-        list(dict.fromkeys(self.all_cables))
+        self.all_cables = list(dict.fromkeys(self.all_cables))
 
     def cable_costs_house(self):
         """
