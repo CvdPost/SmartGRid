@@ -3,6 +3,19 @@ import copy
 
 
 # Based on: https://github.com/minprog/radio_russia_demo/blob/college_2/code/algorithms/randomise.py
+def randomise(grid):
+    """
+    Keep running while houses are not all connected.
+    """
+
+    while random_assignment(grid) == False:
+        random_assignment(grid)
+
+    print('calculating costs')
+    grid.grid_costs()
+
+    print('generating ouput .json')
+    grid.output_file('randomise')
 
 def random_assignment(grid):
     """
@@ -20,11 +33,9 @@ def random_assignment(grid):
         else:
             left_overs.append(house)
 
-    # Randomize list of left over houses
-    random_reassignment(grid, left_overs)
-    
-    grid.grid_costs()
-    grid.output_file('randomise')
+    if random_reassignment(grid, left_overs):
+        return True
+    return False
 
 
 def clear_grid(grid):
@@ -46,9 +57,15 @@ def random_reassignment(grid, left_overs):
     for house in left_overs:
         possible_batteries = house.get_possibilities(grid.batteries)
         if len(possible_batteries) == 0:
-            clear_grid(grid)
-            random_assignment(grid)
-        else: 
+            return False
+        else:  
             battery = random.choice()
             battery.set_connection(house)
             left_overs.remove(house)
+
+    return True
+
+
+    
+
+

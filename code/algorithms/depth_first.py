@@ -1,3 +1,4 @@
+from code.visualization import visualise
 import copy
 
 # Based on https://github.com/minprog/radio_russia_demo/blob/college_2/code/algorithms/depth_first.py
@@ -13,6 +14,10 @@ class DepthFirst:
         self.name = 'Depth_first'
 
     def get_next_state(self):
+        """
+        Pops last element of stack.
+        """
+
         return self.states.pop()
 
     def build_children(self, grid, house):
@@ -33,6 +38,7 @@ class DepthFirst:
         """
         Checks and accepts better solutions than the current solution.
         """
+
         new_costs = new_grid.grid_costs()
         old_costs = self.best_costs
 
@@ -42,6 +48,8 @@ class DepthFirst:
             self.best_costs = new_costs
             print(f"New best costs: {self.best_costs}")
             new_grid.output_file(self.name)
+            visualise.visualise(new_grid, self.name)
+            # input()
         else:
             print('no better cost found')
     
@@ -49,6 +57,7 @@ class DepthFirst:
         """
         Runs the algorithm until all possible states are visisted.
         """
+        
         while self.states:
             new_grid = self.get_next_state()
             house = new_grid.get_unconnected_house()

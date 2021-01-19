@@ -13,10 +13,10 @@ start_time = time.time()
 if __name__ == "__main__":
 
     # choose which data folder we pick
-    data_folder = "district_3"
+    data_folder = "district_1"
 
     # choose the data file name
-    data_file = "district-3"
+    data_file = "district-1"
 
     # Create a grid from our data
     test_grid = grid.Grid(f"data/{data_folder}/{data_file}_houses.csv", f"data/{data_folder}/{data_file}_batteries.csv", data_folder)
@@ -45,7 +45,7 @@ if __name__ == "__main__":
 
     # ------------------------------ RANDOMISE ---------------------------------- #
    
-    randomise.random_assignment(test_grid)
+    # randomise.randomise(test_grid)
 
     #Creating a visualisation
     output_file(f"{data_folder}.html")
