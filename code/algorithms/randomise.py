@@ -7,15 +7,19 @@ def randomise(grid):
     """
     Keep running while houses are not all connected.
     """
+    runs = 0
 
     while random_assignment(grid) == False:
         random_assignment(grid)
+        runs += 1
 
     print('calculating costs')
     grid.grid_costs()
 
     print('generating ouput .json')
     grid.output_file('randomise')
+
+    print(f"times randomse ran to find a solution: {runs}")
 
 def random_assignment(grid):
     """
@@ -36,7 +40,6 @@ def random_assignment(grid):
     if random_reassignment(grid, left_overs):
         return True
     return False
-
 
 def clear_grid(grid):
     """
@@ -64,8 +67,5 @@ def random_reassignment(grid, left_overs):
             left_overs.remove(house)
 
     return True
-
-
-    
 
 
