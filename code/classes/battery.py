@@ -1,3 +1,6 @@
+from .grid import Grid
+
+
 class Battery():
     def __init__(self, x_location, y_location, battery_id, capacity):
         self.x_location = x_location
@@ -46,21 +49,26 @@ class Battery():
         new_list = house.cable_coords
 
         for item in new_list:
+
             self.all_cables.append(item)
 
         # remove all duplicates from list 
         self.all_cables = list(dict.fromkeys(self.all_cables))
 
+        # Putting cable coordinates in list of possible connection points by calling method below
+        cable_connection_points(self)
+        
+
     def cable_costs_house(self):
         """
-        Calcutes the cost of a cable per line segment
+        Calculates the cost of a cable per line segment
         """
 
         self.cable_costs = 9 * (len(self.all_cables) - 1)
 
     def set_init(self):
         """
-        Disconnect houses from batteries and sets output and costs to zero.
+        Disconnects houses from batteries and sets output and costs to zero.
         """
         
         self.connect.clear()

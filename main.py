@@ -12,7 +12,7 @@ import time
 
 if __name__ == "__main__":
 
-    print('Welcome to Smartsplitters SMartgrid algorithm!')
+    print('Welcome to Smartsplitters Smartgrid algorithm!')
     print('=================================================')
     print()
     
