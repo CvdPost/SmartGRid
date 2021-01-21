@@ -74,8 +74,7 @@ class House():
         """
         Reset the class object
         """
-        
-        self.costs_house = 0
+        self.cable_coords.clear()
         self.connected = False
 
     def __repr__(self):

@@ -1,6 +1,3 @@
-from .grid import Grid
-
-
 class Battery():
     def __init__(self, x_location, y_location, battery_id, capacity):
         self.x_location = x_location
@@ -22,6 +19,12 @@ class Battery():
         self.connect.append(house)
         self.connected_output(house)
         house.connected_value()
+
+
+    def disconnect_house(self, house):
+        self.connect.remove(house)
+        self.all_cables.clear()
+        house.set_init()
  
     def is_connected(self, house):
         """ 
@@ -56,7 +59,7 @@ class Battery():
         self.all_cables = list(dict.fromkeys(self.all_cables))
 
         # Putting cable coordinates in list of possible connection points by calling method below
-        cable_connection_points(self)
+        # cable_connection_points(self)
         
 
     def cable_costs_house(self):
@@ -70,7 +73,7 @@ class Battery():
         """
         Disconnects houses from batteries and sets output and costs to zero.
         """
-        
+
         self.connect.clear()
         self.total_output = 0
         self.all_cables.clear()

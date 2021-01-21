@@ -10,29 +10,29 @@ class Grid():
         self.total_costs = 0
         self.connection_points = []
     
-    def load_battery_connection_points(self, coordinate):
-        """
-        Mapping coordinates of batteries and existing cables.
-        """
-        # battery coordinates:
-        self.connection_points.append(coordinate)
+    # def load_battery_connection_points(self, coordinate):
+    #     """
+    #     Mapping coordinates of batteries and existing cables.
+    #     """
+    #     # battery coordinates:
+    #     self.connection_points.append(coordinate)
 
-    def cable_connection_points(self, battery):   
-        """
-        Adds cable coordinates to connection points and 
-        filters duplicates from list (see battery.py, filtered).
-        """
+    # def cable_connection_points(self, battery):   
+    #     """
+    #     Adds cable coordinates to connection points and 
+    #     filters duplicates from list (see battery.py, filtered).
+    #     """
 
-        # list of all cable coordinates to battery
-        new_list = battery.all_cables
-        print('new_list:', new_list)
+    #     # list of all cable coordinates to battery
+    #     new_list = battery.all_cables
+    #     print('new_list:', new_list)
 
-        for item in new_list:
-            self.connection_points.append(item)
+    #     for item in new_list:
+    #         self.connection_points.append(item)
 
-        # Removing cable duplicates from list 
-        self.connection_points = list(dict.fromkeys(self.connection_points))
-        print('connection_points', self.connection_points)
+    #     # Removing cable duplicates from list 
+    #     self.connection_points = list(dict.fromkeys(self.connection_points))
+    #     print('connection_points', self.connection_points)
 
     def load_batteries(self, battery_file):
         """
@@ -45,7 +45,7 @@ class Grid():
             counter = 1 
             for row in reader:
                 # Put battery coordinates in list possible connection points 
-                load_connection_points(row['positie'])
+                # self.load_battery_connection_points(row['positie'])
 
                 position = row['positie'].split(',')
                 batteries[counter] = Battery(position[0], position[1], counter, row['capaciteit'])
@@ -119,6 +119,13 @@ class Grid():
 
         with open(f'{algorithm_name}-data.json', 'w') as outfile:
             json.dump(grid_list, outfile, indent=4)
+
+
+    def is_solution(self):
+        for house in self.houses.values():
+            if not house.connected:
+                return False
+        return True
 
     def __repr__(self):
         return str(self.batteries)

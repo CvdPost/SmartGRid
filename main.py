@@ -1,14 +1,13 @@
 from code.classes import grid, house
 from code.visualization import visualise
 
-from code.algorithms import random, depth_first, breadth_first, randomise
+from code.algorithms import random, depth_first, breadth_first, randomise, hillclimber
 
 from bokeh.models import grids
 from bokeh.plotting import figure, output_file, show
 import time
 
 
- 
 
 if __name__ == "__main__":
 
@@ -33,7 +32,7 @@ if __name__ == "__main__":
     print()
 
     # List of available algorithms, add any new made algoritms manually
-    algorithms = ['random', 'randomise', 'depth_first', 'breadth_first']
+    algorithms = ['random', 'randomise', 'depth_first', 'breadth_first', 'hillclimber']
     print('Available algorithms:')
     print('-------------------------------------------------')
     for item in algorithms:
@@ -89,7 +88,14 @@ if __name__ == "__main__":
     # ------------------------------ RANDOMISE ---------------------------------- #
     elif algorithm == 'randomise':
         randomise.randomise(test_grid)
-
+     
+    # ------------------------------ HILLCLIMBER ---------------------------------- #
+    if algorithm == 'hillclimber':
+        randomise.randomise(test_grid)
+        print("starting hillclimber")
+    
+        hillclimber.HillClimber(test_grid).run(500)
+    
     #Creating a visualisation
     output_file(f"{data_folder}.html")
 
