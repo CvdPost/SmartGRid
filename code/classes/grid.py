@@ -91,6 +91,8 @@ class Grid():
             battery.cable_costs_house()
             variable_costs = variable_costs + battery.cable_costs
             fixed_costs = fixed_costs + battery.installation_costs
+            # print('cables battery:', battery.all_cables)
+            # input()
         
         self.total_costs = fixed_costs + variable_costs
 

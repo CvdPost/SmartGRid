@@ -25,7 +25,7 @@ def random_assignment(grid):
     """
     Randomly assign each house to one of the batteries.
     """
-
+    clear_grid(grid)
     left_overs = []
 
     for house in grid.houses.values():

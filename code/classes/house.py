@@ -37,11 +37,32 @@ class House():
         Passes these coordinates to the battery.
         """
 
+        # Start location
         start_y_location = int(self.y_location)
-        end_y_location = int(battery.y_location)
-
         start_x_location = int(self.x_location)
-        end_x_location = int(battery.x_location)
+        
+        if battery.all_cables:
+            closest_distance = float('inf')
+            for coord in battery.all_cables:
+                coords = coord.split(',')
+                # print('x location: ', coords[0], 'y_location: ', coords[1])
+                x_location = int(coords[0])
+                y_location = int(coords[1])
+                # print('x location: ', x_location, 'y_location: ', y_location)
+                distance = abs(x_location - int(self.x_location)) + abs(y_location - int(self.y_location))
+                # print('distance:', distance)
+                # print('closest distance:', closest_distance)
+                if distance < closest_distance:
+                    closest_distance = distance
+                    end_x_location = x_location
+                    end_y_location = y_location
+
+
+        else:
+            end_y_location = int(battery.y_location)
+            end_x_location = int(battery.x_location)
+
+
 
         cable_location = f"{start_x_location},{start_y_location}"
 

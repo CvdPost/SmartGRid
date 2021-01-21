@@ -22,7 +22,9 @@ class Battery():
 
 
     def disconnect_house(self, house):
+        
         self.connect.remove(house)
+        # print('list of houses', self.connect)
         self.all_cables.clear()
         house.set_init()
  

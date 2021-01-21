@@ -12,15 +12,18 @@ class HillClimber:
         self.grid = copy.deepcopy(grid)
         self.costs = grid.grid_costs()
 
-    def switch_houses(self, grid):
-        random_battery = random.choice(list(grid.batteries.values())) 
-        random_battery_2 = random.choice(list(grid.batteries.values()))
+    def switch_houses(self, new_grid):
+        random_battery = random.choice(list(new_grid.batteries.values())) 
+        random_battery_2 = random.choice(list(new_grid.batteries.values()))
 
+        
         while random_battery == random_battery_2:
-            random_battery_2 = random.choice(list(grid.batteries.values()))
+            random_battery_2 = random.choice(list(new_grid.batteries.values()))
 
         random_house = random.choice(random_battery.connect)
         random_house_2 = random.choice(random_battery_2.connect) 
+        print(random_battery, random_house)
+        print(random_battery_2, random_house_2)
 
         # calculates new output of batteries when houses are switched
         new_battery_output = float(random_battery.total_output) - float(random_house.output) + float(random_house_2.output)
@@ -40,10 +43,11 @@ class HillClimber:
             if new_distance <= old_distance and new_distance_2 <= old_distance_2:
                 random_battery.disconnect_house(random_house)
                 random_battery_2.disconnect_house(random_house_2)
+                
+
                 random_battery.set_connection(random_house_2)
                 random_battery_2.set_connection(random_house)
         
-
 
     def check_solution(self, new_grid):
 
@@ -54,8 +58,8 @@ class HillClimber:
             self.grid = new_grid
             self.costs = new_costs
             print("better solution,", self.costs)
-        else: 
-            print("no better solution")
+        # else: 
+        #     print("no better solution")
 
     def run(self, iterations):
         """
@@ -64,9 +68,9 @@ class HillClimber:
         self.iterations = iterations
 
         for iteration in range(iterations):
-            print("current solution", self.costs)
+            # print("current solution", self.costs)
             # Nice trick to only print if variable is set to True
-            print(f'Iteration {iteration}/{iterations}')
+            # print(f'Iteration {iteration}/{iterations}')
 
             # Create a copy of the graph to simulate the change
             new_grid = copy.deepcopy(self.grid)
@@ -77,18 +81,4 @@ class HillClimber:
             self.check_solution(new_grid)
 
         self.grid.output_file('hillclimber')
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
 

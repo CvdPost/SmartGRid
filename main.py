@@ -94,12 +94,12 @@ if __name__ == "__main__":
         randomise.randomise(test_grid)
         print("starting hillclimber")
     
-        hillclimber.HillClimber(test_grid).run(500)
+        hillclimber.HillClimber(test_grid).run(3)
     
     #Creating a visualisation
     output_file(f"{data_folder}.html")
 
-    # visualise.visualise(test_grid, data_folder)
+    visualise.visualise(test_grid, data_folder)
     
     print(f"output file created in {algorithm}-data.json")
 
