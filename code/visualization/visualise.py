@@ -37,7 +37,10 @@ def visualise(grid, name):
     #             p.line([house.x_location, house.x_location], [battery.y_location, house.y_location], line_width=1, color=colours[(battery.id - 1)], alpha=0.63294)
     
     for battery in grid.batteries.values():
+        print('draw time!')
+        print('batter:', battery.id, battery.all_cables)
         for house in battery.connect:
+            print('house:', house.id, house.cable_coords)
             x_coords = []
             y_coords = []
             for coord in house.cable_coords:
@@ -45,7 +48,8 @@ def visualise(grid, name):
                 y_coord = coord.split(',')[1]
                 x_coords.append(x_coord)
                 y_coords.append(y_coord)
-            
+            print(x_coords)
+            print(y_coords)
             p.line(x_coords, y_coords, line_width=1, color=colours[(battery.id - 1)], alpha=0.63294)
 
     show(p)

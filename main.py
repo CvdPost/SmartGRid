@@ -94,13 +94,14 @@ if __name__ == "__main__":
         
         print("starting hillclimber")
     
-        try:
-            test_grid = hillclimber.HillClimber(randomise.randomise(test_grid))
-            test_grid.run(500)
+        # try:
+        randomise.randomise(test_grid)
+        hc_grid = hillclimber.HillClimber(test_grid)
+        hc_grid.run(500)
 
-        except StopIteration:
-            visualise.visualise(test_grid.grid, data_folder)
-            exit(1)
+        # except StopIteration:
+        #     visualise.visualise(hc_grid.grid, data_folder)
+        #     exit(1)
     
     #Creating a visualisation
     output_file(f"{data_folder}.html")

@@ -5,7 +5,7 @@ class House():
         self.id = house_id
         self.output = output
         self.connected = False
-        self.cable_coords = []
+        self.cable_coords = [f"{self.x_location},{self.y_location}"]
 
     def connected_value(self):
         """ 
@@ -36,12 +36,13 @@ class House():
         Adds every coordinate of the cable that connects the house with a battery. 
         Passes these coordinates to the battery.
         """
-
+        # print('begin cable_grid:', self.id, self.cable_coords)
         # Start location
         start_y_location = int(self.y_location)
         start_x_location = int(self.x_location)
         
         if battery.all_cables:
+            # print('battery connection points:', battery.all_cables)
             closest_distance = float('inf')
             for coord in battery.all_cables:
                 coords = coord.split(',')
@@ -62,11 +63,11 @@ class House():
             end_y_location = int(battery.y_location)
             end_x_location = int(battery.x_location)
 
+        # print('end point: ', end_x_location,end_y_location)
 
+        # cable_location = f"{start_x_location},{start_y_location}"
 
-        cable_location = f"{start_x_location},{start_y_location}"
-
-        self.cable_coords = [cable_location]
+        # self.cable_coords.append(cable_location)
 
         # Add coordinate steps for y to the list
         while start_y_location != end_y_location:
@@ -88,6 +89,8 @@ class House():
             cable_location = f"{start_x_location},{start_y_location}"
             self.cable_coords.append(cable_location)
 
+        # print('end cable_grid:', self.id, self.cable_coords)
+        self.cable_coords = list(dict.fromkeys(self.cable_coords))
 
         battery.filtered_cables(self)
 
@@ -95,7 +98,7 @@ class House():
         """
         Reset the class object
         """
-        self.cable_coords.clear()
+        self.cable_coords = [f"{self.x_location},{self.y_location}"]
         self.connected = False
 
     def __repr__(self):

@@ -19,9 +19,8 @@ def randomise(grid):
     print('generating ouput .json')
     grid.output_file('randomise')
 
-    print(f"times randomse ran to find a solution: {runs}")
+    print(f"times randomise ran to find a solution: {runs}")
 
-    return grid
 
 def random_assignment(grid):
     """

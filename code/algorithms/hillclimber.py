@@ -22,11 +22,6 @@ class HillClimber:
 
         random_house = random.choice(random_battery.connect)
         random_house_2 = random.choice(random_battery_2.connect)
-        # print("switch")
-        # print('---------------------------------')
-        # print(random_battery.id, random_house)
-        # print(random_battery_2.id, random_house_2)
-        # print('---------------------------------')
 
         # calculates new output of batteries when houses are switched
         new_battery_output = float(random_battery.total_output) - float(random_house.output) + float(random_house_2.output)
@@ -44,6 +39,14 @@ class HillClimber:
 
             # checks if new location house is closer to new battery compared to old situation 
             if new_distance <= old_distance and new_distance_2 <= old_distance_2:
+                print("switch")
+                print('---------------------------------')
+                print(random_battery.id, random_house)
+                
+                print(random_battery_2.id, random_house_2)
+                print('---------------------------------')
+
+                
                 random_battery.disconnect_house(random_house)
                 random_battery_2.disconnect_house(random_house_2)
                 
@@ -52,12 +55,8 @@ class HillClimber:
                 random_battery_2.set_connection(random_house)
                 self.grid = new_grid
                 self.grid.grid_costs()
-                raise StopIteration()
-                # print("switch")
-                # print('---------------------------------')
-                # print(random_battery.id, random_house)
-                # print(random_battery_2.id, random_house_2)
-                # print('---------------------------------')
+                # raise StopIteration()
+                
         
 
     def check_solution(self, new_grid):
@@ -93,5 +92,4 @@ class HillClimber:
 
         self.grid.output_file('hillclimber')
 
-        return self.grid
 
