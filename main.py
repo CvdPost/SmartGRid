@@ -91,14 +91,21 @@ if __name__ == "__main__":
      
     # ------------------------------ HILLCLIMBER ---------------------------------- #
     if algorithm == 'hillclimber':
-        randomise.randomise(test_grid)
+        
         print("starting hillclimber")
     
-        hillclimber.HillClimber(test_grid).run(3)
+        try:
+            test_grid = hillclimber.HillClimber(randomise.randomise(test_grid))
+            test_grid.run(500)
+
+        except StopIteration:
+            visualise.visualise(test_grid.grid, data_folder)
+            exit(1)
     
     #Creating a visualisation
     output_file(f"{data_folder}.html")
 
+    # test_grid.grid_costs()
     visualise.visualise(test_grid, data_folder)
     
     print(f"output file created in {algorithm}-data.json")

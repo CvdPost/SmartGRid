@@ -21,6 +21,8 @@ def randomise(grid):
 
     print(f"times randomse ran to find a solution: {runs}")
 
+    return grid
+
 def random_assignment(grid):
     """
     Randomly assign each house to one of the batteries.
