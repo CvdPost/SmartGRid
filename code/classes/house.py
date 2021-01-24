@@ -38,6 +38,7 @@ class House():
         """
         # print('begin cable_grid:', self.id, self.cable_coords)
         # Start location
+
         start_y_location = int(self.y_location)
         start_x_location = int(self.x_location)
         
@@ -64,10 +65,6 @@ class House():
             end_x_location = int(battery.x_location)
 
         # print('end point: ', end_x_location,end_y_location)
-
-        # cable_location = f"{start_x_location},{start_y_location}"
-
-        # self.cable_coords.append(cable_location)
 
         # Add coordinate steps for y to the list
         while start_y_location != end_y_location:

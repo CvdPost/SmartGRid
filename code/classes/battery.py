@@ -15,15 +15,18 @@ class Battery():
         Creates list of connected houses to battery, calculates output of connected houses 
         and sets house connection to True.
         """
-
+        # print('output before:', self.total_output)
         self.connect.append(house)
         self.connected_output(house)
         house.connected_value()
+        # print('output after: ', self.total_output)
 
 
     def disconnect_house(self, house):
-        
+        # print('before:', self.connect)
         self.connect.remove(house)
+        self.total_output = self.total_output - float(house.output)
+        # print('after: ', self.connect)
         # print('list of houses', self.connect)
         self.all_cables.clear()
         house.set_init()

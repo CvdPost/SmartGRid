@@ -13,51 +13,105 @@ class HillClimber:
         self.costs = grid.grid_costs()
 
     def switch_houses(self, new_grid):
+        # Get radnom batteries that are not the same
         random_battery = random.choice(list(new_grid.batteries.values())) 
         random_battery_2 = random.choice(list(new_grid.batteries.values()))
 
-        
         while random_battery == random_battery_2:
             random_battery_2 = random.choice(list(new_grid.batteries.values()))
 
+        # Get a random house from each battery
         random_house = random.choice(random_battery.connect)
         random_house_2 = random.choice(random_battery_2.connect)
-
-        # calculates new output of batteries when houses are switched
-        new_battery_output = float(random_battery.total_output) - float(random_house.output) + float(random_house_2.output)
-        new_battery_output_2 = float(random_battery_2.total_output) - float(random_house_2.output) + float(random_house.output)
-    
-        # checks if new output of batteries meets constraint
-        if new_battery_output <= float(random_battery.capacity) and new_battery_output_2 <= float(random_battery_2.capacity):
-
-            # calculates distances to battery when houses are switched 
-            old_distance = abs(int(random_battery.x_location) - int(random_house.x_location)) + abs(int(random_battery.y_location) - int(random_house.y_location))
-            new_distance = abs(int(random_battery_2.x_location) - int(random_house.x_location)) + abs(int(random_battery_2.y_location) - int(random_house.y_location))
-
-            old_distance_2 = abs(int(random_battery_2.x_location) - int(random_house_2.x_location)) + abs(int(random_battery_2.y_location) - int(random_house_2.y_location))
-            new_distance_2 = abs(int(random_battery.x_location) - int(random_house_2.x_location)) + abs(int(random_battery.y_location) - int(random_house_2.y_location))
-
-            # checks if new location house is closer to new battery compared to old situation 
-            if new_distance <= old_distance and new_distance_2 <= old_distance_2:
+       
+        # check if battery ouput still meets constraint if houses are swapped
+        if self.compare_output(random_house, random_house_2, random_battery, random_battery_2):
+            # check if the distances are shorter when houses are swapped
+            if self.compare_distance(random_house, random_house_2, random_battery, random_battery_2):
+                # finally switch the houses
                 print("switch")
                 print('---------------------------------')
                 print(random_battery.id, random_house)
                 
                 print(random_battery_2.id, random_house_2)
                 print('---------------------------------')
-
-                
                 random_battery.disconnect_house(random_house)
                 random_battery_2.disconnect_house(random_house_2)
-                
-
+            
                 random_battery.set_connection(random_house_2)
                 random_battery_2.set_connection(random_house)
-                self.grid = new_grid
-                self.grid.grid_costs()
-                # raise StopIteration()
+                return True
+        return False
+
+
+
+        # # calculates new output of batteries when houses are switched
+        # new_battery_output = float(random_battery.total_output) - float(random_house.output) + float(random_house_2.output)
+        # new_battery_output_2 = float(random_battery_2.total_output) - float(random_house_2.output) + float(random_house.output)
+
+        # # checks if new output of batteries meets constraint
+        # if new_battery_output <= float(random_battery.capacity) and new_battery_output_2 <= float(random_battery_2.capacity):
+
+        #     # calculates distances to battery when houses are switched 
+        #     old_distance = abs(int(random_battery.x_location) - int(random_house.x_location)) + abs(int(random_battery.y_location) - int(random_house.y_location))
+        #     new_distance = abs(int(random_battery_2.x_location) - int(random_house.x_location)) + abs(int(random_battery_2.y_location) - int(random_house.y_location))
+            
+        #     old_distance_2 = abs(int(random_battery_2.x_location) - int(random_house_2.x_location)) + abs(int(random_battery_2.y_location) - int(random_house_2.y_location))
+        #     new_distance_2 = abs(int(random_battery.x_location) - int(random_house_2.x_location)) + abs(int(random_battery.y_location) - int(random_house_2.y_location))
+
+        #     # checks if new location house is closer to new battery compared to old situation 
+        #     if new_distance <= old_distance and new_distance_2 <= old_distance_2:
+        #         print("switch")
+        #         print('---------------------------------')
+        #         print(random_battery.id, random_house)
                 
+        #         print(random_battery_2.id, random_house_2)
+        #         print('---------------------------------')
+
+                
+        #         random_battery.disconnect_house(random_house)
+        #         random_battery_2.disconnect_house(random_house_2)
+                
+
+        #         random_battery.set_connection(random_house_2)
+        #         random_battery_2.set_connection(random_house)
         
+    def compare_output(self, house_1, house_2, battery_1, battery_2):
+        '''
+        Compares the output value of a battery when houses are swapped.
+        Returns True if both batteries don't exceed their capacity (constraint).
+        '''
+
+        new_battery_output = float(battery_1.total_output) - float(house_1.output) + float(house_2.output)
+        new_battery_output_2 = float(battery_2.total_output) - float(house_2.output) + float(house_1.output)
+
+        if new_battery_output <= float(battery_1.capacity) and new_battery_output_2 <= float(battery_2.capacity):
+            return True
+        return False
+
+    def compare_distance(self, house_1, house_2, battery_1, battery_2):
+        '''
+        Compares the manhattan distance betweeen a house and battery before and after swapping.
+        If the distance after swap is shorter return true else return false.
+        '''
+
+        old_distance_1 = self.get_manh_distance(house_1, battery_1)
+        new_distance_1 = self.get_manh_distance(house_1, battery_2)
+
+        old_distance_2 = self.get_manh_distance(house_2, battery_2)
+        new_distance_2 = self.get_manh_distance(house_1, battery_2)
+
+        if new_distance_1 <= old_distance_1 and new_distance_2 <= old_distance_2: 
+            return True
+        return False
+
+    def get_manh_distance(self, house, battery):
+        '''
+        returns the absolute value of the manhattan distance between a house and battery.
+        '''
+
+        distance = abs(int(battery.x_location) - int(house.x_location)) + abs(int(battery.y_location) - int(house.y_location))
+        return distance
 
     def check_solution(self, new_grid):
 
@@ -79,13 +133,14 @@ class HillClimber:
 
         for iteration in range(iterations):
             # print("current solution", self.costs)
-            # Nice trick to only print if variable is set to True
             # print(f'Iteration {iteration}/{iterations}')
 
             # Create a copy of the graph to simulate the change
             new_grid = copy.deepcopy(self.grid)
 
-            self.switch_houses(new_grid)
+            # self.switch_houses(new_grid)
+            while self.switch_houses(new_grid) != True:
+                pass
 
             # Accept it if it is better
             self.check_solution(new_grid)

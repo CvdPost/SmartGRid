@@ -97,7 +97,7 @@ if __name__ == "__main__":
         # try:
         randomise.randomise(test_grid)
         hc_grid = hillclimber.HillClimber(test_grid)
-        hc_grid.run(500)
+        hc_grid.run(200)
 
         # except StopIteration:
         #     visualise.visualise(hc_grid.grid, data_folder)
