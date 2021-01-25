@@ -1,6 +1,9 @@
 import copy
 import random
 
+from code.visualization import visualise
+from bokeh.plotting import output_file
+
 
 # Based on: https://github.com/minprog/radio_russia_demo/blob/college_2/code/algorithms/hillclimber.py
 class HillClimber:  
@@ -11,6 +14,7 @@ class HillClimber:
 
         self.grid = copy.deepcopy(grid)
         self.costs = grid.grid_costs()
+        self.counter = 1
 
     def switch_houses(self, new_grid):
         # Get radnom batteries that are not the same
@@ -29,12 +33,12 @@ class HillClimber:
             # check if the distances are shorter when houses are swapped
             if self.compare_distance(random_house, random_house_2, random_battery, random_battery_2):
                 # finally switch the houses
-                print("switch")
-                print('---------------------------------')
-                print(random_battery.id, random_house)
+                # print("switch")
+                # print('---------------------------------')
+                # print(random_battery.id, random_house)
                 
-                print(random_battery_2.id, random_house_2)
-                print('---------------------------------')
+                # print(random_battery_2.id, random_house_2)
+                # print('---------------------------------')
                 random_battery.disconnect_house(random_house)
                 random_battery_2.disconnect_house(random_house_2)
             
@@ -43,38 +47,6 @@ class HillClimber:
                 return True
         return False
 
-
-
-        # # calculates new output of batteries when houses are switched
-        # new_battery_output = float(random_battery.total_output) - float(random_house.output) + float(random_house_2.output)
-        # new_battery_output_2 = float(random_battery_2.total_output) - float(random_house_2.output) + float(random_house.output)
-
-        # # checks if new output of batteries meets constraint
-        # if new_battery_output <= float(random_battery.capacity) and new_battery_output_2 <= float(random_battery_2.capacity):
-
-        #     # calculates distances to battery when houses are switched 
-        #     old_distance = abs(int(random_battery.x_location) - int(random_house.x_location)) + abs(int(random_battery.y_location) - int(random_house.y_location))
-        #     new_distance = abs(int(random_battery_2.x_location) - int(random_house.x_location)) + abs(int(random_battery_2.y_location) - int(random_house.y_location))
-            
-        #     old_distance_2 = abs(int(random_battery_2.x_location) - int(random_house_2.x_location)) + abs(int(random_battery_2.y_location) - int(random_house_2.y_location))
-        #     new_distance_2 = abs(int(random_battery.x_location) - int(random_house_2.x_location)) + abs(int(random_battery.y_location) - int(random_house_2.y_location))
-
-        #     # checks if new location house is closer to new battery compared to old situation 
-        #     if new_distance <= old_distance and new_distance_2 <= old_distance_2:
-        #         print("switch")
-        #         print('---------------------------------')
-        #         print(random_battery.id, random_house)
-                
-        #         print(random_battery_2.id, random_house_2)
-        #         print('---------------------------------')
-
-                
-        #         random_battery.disconnect_house(random_house)
-        #         random_battery_2.disconnect_house(random_house_2)
-                
-
-        #         random_battery.set_connection(random_house_2)
-        #         random_battery_2.set_connection(random_house)
         
     def compare_output(self, house_1, house_2, battery_1, battery_2):
         '''
@@ -117,13 +89,19 @@ class HillClimber:
 
         old_costs = self.costs
         new_costs = new_grid.grid_costs()
-
+        
         if new_costs < old_costs:
             self.grid = new_grid
             self.costs = new_costs
+            self.grid.output_file(f"testing_output/hill{self.counter}")
+            output_file(f"testing_visual/hill{self.counter}.html")
+            visualise.visualise(self.grid, f"hill{self.counter}")
+            self.counter += 1
             print("better solution,", self.costs)
-        # else: 
-        #     print("no better solution")
+            return True
+
+        return False
+            
 
     def run(self, iterations):
         """
@@ -140,11 +118,12 @@ class HillClimber:
 
             # self.switch_houses(new_grid)
             while self.switch_houses(new_grid) != True:
-                pass
+                self.switch_houses(new_grid)
 
             # Accept it if it is better
-            self.check_solution(new_grid)
-
-        self.grid.output_file('hillclimber')
+            if self.check_solution(new_grid) == True:
+                print(f'Iteration {iteration}/{iterations}')
+            
+        # self.grid.output_file('hillclimber')
 
 

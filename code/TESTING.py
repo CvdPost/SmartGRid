@@ -255,3 +255,47 @@
 #             x_coords.append(x_coord)
 #             y_coords.append(y_coord)
 #             p.line(x_coords, y_coords, line_width=1)
+
+
+#Plotting the lines connecting houses with batteries
+# for battery in grid.batteries.values():
+#     for house in grid.houses.values():
+#         if battery.is_connected(house):
+#             p.line([battery.x_location, house.x_location], [battery.y_location, battery.y_location], line_width=1, color=colours[(battery.id - 1)], alpha=0.63294)
+#             p.line([house.x_location, house.x_location], [battery.y_location, house.y_location], line_width=1, color=colours[(battery.id - 1)], alpha=0.63294)
+
+
+# installl selenium for saving plot
+
+
+
+        # # calculates new output of batteries when houses are switched
+        # new_battery_output = float(random_battery.total_output) - float(random_house.output) + float(random_house_2.output)
+        # new_battery_output_2 = float(random_battery_2.total_output) - float(random_house_2.output) + float(random_house.output)
+
+        # # checks if new output of batteries meets constraint
+        # if new_battery_output <= float(random_battery.capacity) and new_battery_output_2 <= float(random_battery_2.capacity):
+
+        #     # calculates distances to battery when houses are switched 
+        #     old_distance = abs(int(random_battery.x_location) - int(random_house.x_location)) + abs(int(random_battery.y_location) - int(random_house.y_location))
+        #     new_distance = abs(int(random_battery_2.x_location) - int(random_house.x_location)) + abs(int(random_battery_2.y_location) - int(random_house.y_location))
+            
+        #     old_distance_2 = abs(int(random_battery_2.x_location) - int(random_house_2.x_location)) + abs(int(random_battery_2.y_location) - int(random_house_2.y_location))
+        #     new_distance_2 = abs(int(random_battery.x_location) - int(random_house_2.x_location)) + abs(int(random_battery.y_location) - int(random_house_2.y_location))
+
+        #     # checks if new location house is closer to new battery compared to old situation 
+        #     if new_distance <= old_distance and new_distance_2 <= old_distance_2:
+        #         print("switch")
+        #         print('---------------------------------')
+        #         print(random_battery.id, random_house)
+                
+        #         print(random_battery_2.id, random_house_2)
+        #         print('---------------------------------')
+
+                
+        #         random_battery.disconnect_house(random_house)
+        #         random_battery_2.disconnect_house(random_house_2)
+                
+
+        #         random_battery.set_connection(random_house_2)
+        #         random_battery_2.set_connection(random_house)

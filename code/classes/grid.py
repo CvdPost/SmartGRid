@@ -86,7 +86,11 @@ class Grid():
         variable_costs = 0
 
         for battery in self.batteries.values():
+            #nog even opmerking?
+            battery.all_cables.clear()
             for house in battery.connect:
+                # nog even opmerking?
+                house.cable_coords.clear()
                 house.cable_grid(battery)
             battery.cable_costs_house()
             variable_costs = variable_costs + battery.cable_costs

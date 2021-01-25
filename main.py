@@ -91,14 +91,49 @@ if __name__ == "__main__":
      
     # ------------------------------ HILLCLIMBER ---------------------------------- #
     if algorithm == 'hillclimber':
-        
-        print("starting hillclimber")
-    
-        # try:
-        randomise.randomise(test_grid)
-        hc_grid = hillclimber.HillClimber(test_grid)
-        hc_grid.run(200)
 
+            # List of available algorithms, add any new made algoritms manually
+        start_state = ['random', 'randomise', 'depth_first']
+        print('Available start states:')
+        print('-------------------------------------------------')
+        for item in start_state:
+            print(item)
+        print('-------------------------------------------------')
+
+        print('With what algorithm would you like to produce a start state? ')
+        start_state = input()
+        while start_state.lower() not in start_state:
+            print('Please choose an algorithm from the available options.')
+            print('Please make sure the input matches the available options.')
+            start_state = input()
+        print('=================================================')
+        
+        if start_state == 'random':
+            while random.random_assignment(test_grid) == False:
+                random.random_assignment(test_grid)
+            # calculates total costs and generates output file
+            test_grid.grid_costs()
+            test_grid.output_file(algorithm)
+            print("starting hillclimber")
+            hc_grid = hillclimber.HillClimber(test_grid)
+            hc_grid.run(100)
+        elif start_state == 'randomise':
+            randomise.randomise(test_grid)
+            print("starting hillclimber")
+            hc_grid = hillclimber.HillClimber(test_grid)
+            hc_grid.run(100)
+        elif start_grid == 'depth_first':
+            depth = depth_first.DepthFirst(test_grid)
+            depth.run()
+            print("starting hillclimber")
+            hc_grid = hillclimber.HillClimber(depth.grid)
+            hc_grid.run(100)
+        
+        # try:
+        # randomise.randomise(test_grid)
+        # hc_grid = hillclimber.HillClimber(test_grid)
+        # hc_grid.run(100)
+        
         # except StopIteration:
         #     visualise.visualise(hc_grid.grid, data_folder)
         #     exit(1)
