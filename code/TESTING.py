@@ -299,3 +299,22 @@
 
         #         random_battery.set_connection(random_house_2)
         #         random_battery_2.set_connection(random_house)
+
+
+
+                
+        # try:
+        # randomise.randomise(test_grid)
+        # hc_grid = hillclimber.HillClimber(test_grid)
+        # hc_grid.run(100)
+        
+        # except StopIteration:
+        #     visualise.visualise(hc_grid.grid, data_folder)
+        #     exit(1)
+
+
+               # Plotting the houses  (red)
+        # for house in grid.houses.values():
+        #     p.circle([house.x_location], [house.y_location], size=7, color="black", alpha=0.5)
+        
+    # for battery in grid.batteries.values():

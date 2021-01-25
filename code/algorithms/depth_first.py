@@ -1,10 +1,11 @@
 from code.visualization import visualise
 import copy
+import time
 
 # Based on https://github.com/minprog/radio_russia_demo/blob/college_2/code/algorithms/depth_first.py
 class DepthFirst:
     """
-    A Depth First algorithm that builds a stack of grids with a unique distribution of battery connections
+    A Depth First algorithm that builds a stack of grids with a unique distribution of battery connections.
     """
     
     def __init__(self, grid):
@@ -13,6 +14,8 @@ class DepthFirst:
         self.best_solution = None
         self.best_costs = float('inf')
         self.name = 'Depth_first'
+        self.running_time = 0
+        self.start = time.time()
 
     def get_next_state(self):
         """
@@ -48,18 +51,18 @@ class DepthFirst:
             self.best_solution = new_grid
             self.best_costs = new_costs
             print(f"New best costs: {self.best_costs}")
-            new_grid.output_file(self.name)
-            visualise.visualise(new_grid, self.name)
+            # new_grid.output_file(self.name)
+            # visualise.visualise(new_grid, self.name)
             # input()
         else:
             print('no better cost found')
     
-    def run(self):
+    def run(self, end_time):
         """
         Runs the algorithm until all possible states are visisted.
         """
 
-        while self.states:
+        while self.states and self.running_time <= end_time:
             new_grid = self.get_next_state()
             house = new_grid.get_unconnected_house()
 
@@ -68,9 +71,12 @@ class DepthFirst:
                 self.build_children(new_grid, house)
             else:
                 self.check_solution(new_grid)
+            
+            self.running_time = time.time() - self.start
                 
         # Update the input graph with the best result found.
         self.grid = self.best_solution
+        self.grid.output_file(self.name)
         print('result', self.best_solution)
 
 

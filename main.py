@@ -7,6 +7,12 @@ from bokeh.models import grids
 from bokeh.plotting import figure, output_file, show
 import time
 
+import math
+
+from datetime import datetime
+
+
+
 
 
 if __name__ == "__main__":
@@ -65,16 +71,20 @@ if __name__ == "__main__":
     
     # ------------------------------ RANDOM ---------------------------------- #
     if algorithm == 'random':
+        start = datetime.now()
         while random.random_assignment(test_grid) == False:
             random.random_assignment(test_grid)
+        
         # calculates total costs and generates output file
         test_grid.grid_costs()
         test_grid.output_file(algorithm)
+        end_time = datetime.now()
+        print('Duration: {}'.format(end_time - start))
     
     # ------------------------------ DEPTH FIRST ------------------------------ #
     elif algorithm == 'depth_first':
         depth = depth_first.DepthFirst(test_grid)
-        depth.run()
+        depth.run(running_time)
     # print('best sol', depth.best_solution)
     # print('best costs', depth.best_costs)
      
@@ -122,21 +132,14 @@ if __name__ == "__main__":
             print("starting hillclimber")
             hc_grid = hillclimber.HillClimber(test_grid)
             hc_grid.run(100)
-        elif start_grid == 'depth_first':
+        elif start_state == 'depth_first':
+            running_time = input("How many hours do you want the program to run? ")
+            running_time = float(running_time) * 3600
             depth = depth_first.DepthFirst(test_grid)
-            depth.run()
+            depth.run(running_time)
             print("starting hillclimber")
             hc_grid = hillclimber.HillClimber(depth.grid)
             hc_grid.run(100)
-        
-        # try:
-        # randomise.randomise(test_grid)
-        # hc_grid = hillclimber.HillClimber(test_grid)
-        # hc_grid.run(100)
-        
-        # except StopIteration:
-        #     visualise.visualise(hc_grid.grid, data_folder)
-        #     exit(1)
     
     #Creating a visualisation
     output_file(f"{data_folder}.html")

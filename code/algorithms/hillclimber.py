@@ -93,9 +93,9 @@ class HillClimber:
         if new_costs < old_costs:
             self.grid = new_grid
             self.costs = new_costs
-            self.grid.output_file(f"testing_output/hill{self.counter}")
-            output_file(f"testing_visual/hill{self.counter}.html")
-            visualise.visualise(self.grid, f"hill{self.counter}")
+            # self.grid.output_file(f"testing_output/hill{self.counter}")
+            # output_file(f"testing_visual/hill{self.counter}.html")
+            # visualise.visualise(self.grid, f"hill{self.counter}")
             self.counter += 1
             print("better solution,", self.costs)
             return True
@@ -124,6 +124,6 @@ class HillClimber:
             if self.check_solution(new_grid) == True:
                 print(f'Iteration {iteration}/{iterations}')
             
-        # self.grid.output_file('hillclimber')
+        self.grid.output_file('hillclimber')
 
 

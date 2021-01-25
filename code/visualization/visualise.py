@@ -21,18 +21,13 @@ def visualise(grid, name):
     # set color of gridlines
     p.ygrid.minor_grid_line_color = p.xgrid.minor_grid_line_color = 'whitesmoke'
     
-    # Plotting the batteries  (navy blue)
+    # Plotting the batteries
     for battery in grid.batteries.values(): 
         p.circle([battery.x_location], [battery.y_location], size=20, color=colours[(battery.id - 1)], alpha=1)
-    
 
-    # Plotting the houses  (red)
-    for house in grid.houses.values():
-        p.circle([house.x_location], [house.y_location], size=7, color="black", alpha=0.5)
-    
-    for battery in grid.batteries.values():
-
+        # plotting houses and cables with same colour as connected battery
         for house in battery.connect:
+            p.circle([house.x_location], [house.y_location], size=7, color=colours[(battery.id - 1)], alpha=0.5)
             x_coords = []
             y_coords = []
             for coord in house.cable_coords:
