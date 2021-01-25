@@ -30,7 +30,7 @@ class Battery():
                 item.measure_distance(self)
         #     print("id, distance",item.id, item.distance)
         # print("-------------------")
-        self.connect.sort(key=lambda house: house.distance)
+        self.connect.sort(key=lambda house: house.distance, reverse=True)
         # print("sorted list", self.connect)   
         
         

@@ -134,7 +134,7 @@ if __name__ == "__main__":
             randomise.randomise(test_grid, running_time)
             print("starting hillclimber")
             hc_grid = hillclimber.HillClimber(test_grid)
-            hc_grid.run(100)
+            hc_grid.run(1000)
         elif start_state == 'depth_first':
             
             depth = depth_first.DepthFirst(test_grid)
