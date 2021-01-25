@@ -46,8 +46,7 @@ class HillClimber:
                 random_battery_2.set_connection(random_house)
                 return True
         return False
-
-        
+  
     def compare_output(self, house_1, house_2, battery_1, battery_2):
         '''
         Compares the output value of a battery when houses are swapped.
@@ -102,7 +101,6 @@ class HillClimber:
 
         return False
             
-
     def run(self, iterations):
         """
         Runs the hillclimber algorithm for a specific amount of iterations.

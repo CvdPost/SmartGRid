@@ -77,7 +77,7 @@ class DepthFirst:
         # Update the input graph with the best result found.
         self.grid = self.best_solution
         self.grid.output_file(self.name)
-        print('result', self.best_solution)
+        # print('result', self.best_solution)
 
 
             

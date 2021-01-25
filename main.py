@@ -68,6 +68,9 @@ if __name__ == "__main__":
 
     # Create a grid from our data
     test_grid = grid.Grid(f"data/{data_folder}/{data_file}_houses.csv", f"data/{data_folder}/{data_file}_batteries.csv", data_folder)
+
+    running_time = input("How many hours do you want the program to run? ")
+    running_time = float(running_time) * 3600
     
     # ------------------------------ RANDOM ---------------------------------- #
     if algorithm == 'random':
@@ -97,12 +100,12 @@ if __name__ == "__main__":
 
     # ------------------------------ RANDOMISE ---------------------------------- #
     elif algorithm == 'randomise':
-        randomise.randomise(test_grid)
+        randomise.randomise(test_grid, running_time)
      
     # ------------------------------ HILLCLIMBER ---------------------------------- #
     if algorithm == 'hillclimber':
 
-            # List of available algorithms, add any new made algoritms manually
+        # List of available algorithms, add any new made algoritms manually
         start_state = ['random', 'randomise', 'depth_first']
         print('Available start states:')
         print('-------------------------------------------------')
@@ -133,8 +136,7 @@ if __name__ == "__main__":
             hc_grid = hillclimber.HillClimber(test_grid)
             hc_grid.run(100)
         elif start_state == 'depth_first':
-            running_time = input("How many hours do you want the program to run? ")
-            running_time = float(running_time) * 3600
+            
             depth = depth_first.DepthFirst(test_grid)
             depth.run(running_time)
             print("starting hillclimber")
