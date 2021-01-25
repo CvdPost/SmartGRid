@@ -131,7 +131,7 @@ if __name__ == "__main__":
             hc_grid = hillclimber.HillClimber(test_grid)
             hc_grid.run(100)
         elif start_state == 'randomise':
-            randomise.randomise(test_grid)
+            randomise.randomise(test_grid, running_time)
             print("starting hillclimber")
             hc_grid = hillclimber.HillClimber(test_grid)
             hc_grid.run(100)

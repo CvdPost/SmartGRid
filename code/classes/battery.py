@@ -19,7 +19,26 @@ class Battery():
         self.connect.append(house)
         self.connected_output(house)
         house.connected_value()
+        self.sort_by_distance()
         # print('output after: ', self.total_output)
+
+    def sort_by_distance(self):
+        # print("STARING SORTING")
+        
+        for item in self.connect:
+            if item.distance is None:
+                item.measure_distance(self)
+        #     print("id, distance",item.id, item.distance)
+        # print("-------------------")
+        self.connect.sort(key=lambda house: house.distance)
+        # print("sorted list", self.connect)   
+        
+        
+        # sorted(self.connect, key=lambda student: student.age) 
+        
+
+
+
 
 
     def disconnect_house(self, house):

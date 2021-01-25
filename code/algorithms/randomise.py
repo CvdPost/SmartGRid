@@ -30,16 +30,14 @@ def randomise(grid, end_time):
         elif grid.grid_costs() < best_grid.total_costs:
             best_grid = copy.deepcopy(grid)
 
-        print('generating ouput .json')
+        # print('generating ouput .json')
         best_grid.output_file('randomise')
 
-        print(f"times randomise ran to find a solution: {runs}")
+        # print(f"times randomise ran to find a solution: {runs}")
         running_time = time.time() - start
     avg_runs = total_runs / no_solutions
     print('Average amount of runs to find solution: ', avg_runs)
 
-# def check_solution(grid):
-#     new_solution = grid.costs()
 
 def random_assignment(grid):
     """

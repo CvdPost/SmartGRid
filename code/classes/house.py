@@ -6,6 +6,7 @@ class House():
         self.output = output
         self.connected = False
         self.cable_coords = [] #[f"{self.x_location},{self.y_location}"]
+        self.distance = None
 
     def connected_value(self):
         """ 
@@ -14,6 +15,9 @@ class House():
 
         self.connected = True
 
+    def measure_distance(self, battery):
+        self.distance = abs(int(battery.x_location) - int(self.x_location)) + abs(int(battery.y_location) - int(self.y_location))
+        
     def get_possibilities(self, options):
         """
         Returns a list of all available batteries that can be assigned to a given house, 
@@ -98,8 +102,8 @@ class House():
         Reset the class object
         """
         self.cable_coords = []
-        # self.cable_coords = [f"{self.x_location},{self.y_location}"]
         self.connected = False
+        self.distance = None
 
     def __repr__(self):
         return f"H{self.id}"
