@@ -157,6 +157,19 @@ if __name__ == "__main__":
             hc_grid = hillclimber.HillClimber(greedy_grid.grid)
             hc_grid.run(2000)
     
+    # ------------------------------ HILLCLIMBER DOUBLE ---------------------------------- #
+    if algorithm == 'hillclimber_double':
+        while random.random_assignment(test_grid) == False:
+            random.random_assignment(test_grid)
+        # calculates total costs and generates output file
+        test_grid.grid_costs()
+        test_grid.output_file(algorithm)
+        print("starting hillclimber_double")
+        hc_double_grid = hillclimber_double.HillClimber_double(test_grid)
+        hc_double_grid.run(1000)
+        hc_grid = hillclimber.HillClimber(hc_double_grid.grid)
+        hc_grid.run(1000)
+    
     #Creating a visualisation
     output_file(f"{data_folder}.html")
 
