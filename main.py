@@ -1,7 +1,7 @@
 from code.classes import grid, house
 from code.visualization import visualise
 
-from code.algorithms import random, depth_first, breadth_first, randomise, hillclimber
+from code.algorithms import random, depth_first, breadth_first, randomise, hillclimber, greedy
 
 from bokeh.models import grids
 from bokeh.plotting import figure, output_file, show
@@ -38,7 +38,7 @@ if __name__ == "__main__":
     print()
 
     # List of available algorithms, add any new made algoritms manually
-    algorithms = ['random', 'randomise', 'depth_first', 'breadth_first', 'hillclimber']
+    algorithms = ['random', 'randomise', 'depth_first', 'breadth_first', 'hillclimber', 'greedy']
     print('Available algorithms:')
     print('-------------------------------------------------')
     for item in algorithms:
@@ -101,6 +101,11 @@ if __name__ == "__main__":
     # ------------------------------ RANDOMISE ---------------------------------- #
     elif algorithm == 'randomise':
         randomise.randomise(test_grid, running_time)
+
+    # ------------------------------ GREEDY LOOK AHEAD ---------------------------------- #
+    elif algorithm == 'greedy':
+        greedy = greedy.GreedyLookAhead(test_grid)
+        greedy.run(running_time)
      
     # ------------------------------ HILLCLIMBER ---------------------------------- #
     if algorithm == 'hillclimber':
@@ -129,19 +134,19 @@ if __name__ == "__main__":
             test_grid.output_file(algorithm)
             print("starting hillclimber")
             hc_grid = hillclimber.HillClimber(test_grid)
-            hc_grid.run(100)
+            hc_grid.run(10000)
         elif start_state == 'randomise':
             randomise.randomise(test_grid, running_time)
             print("starting hillclimber")
             hc_grid = hillclimber.HillClimber(test_grid)
-            hc_grid.run(1000)
+            hc_grid.run(10000)
         elif start_state == 'depth_first':
             
             depth = depth_first.DepthFirst(test_grid)
             depth.run(running_time)
             print("starting hillclimber")
             hc_grid = hillclimber.HillClimber(depth.grid)
-            hc_grid.run(100)
+            hc_grid.run(10000)
     
     #Creating a visualisation
     output_file(f"{data_folder}.html")

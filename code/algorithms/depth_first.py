@@ -65,15 +65,18 @@ class DepthFirst:
         while self.states and self.running_time <= end_time:
             new_grid = self.get_next_state()
             house = new_grid.get_unconnected_house()
-
+            
             # if all houses have a connection -> check solution 
             if house is not None:
                 self.build_children(new_grid, house)
             else:
+                print('test')
                 self.check_solution(new_grid)
             
             self.running_time = time.time() - self.start
-                
+
+        print('self.grid', self.grid)
+
         # Update the input graph with the best result found.
         self.grid = self.best_solution
         self.grid.output_file(self.name)

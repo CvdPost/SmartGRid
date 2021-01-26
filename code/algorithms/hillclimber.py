@@ -17,7 +17,7 @@ class HillClimber:
         self.counter = 1
 
     def switch_houses(self, new_grid):
-        # Get radnom batteries that are not the same
+        # Get random batteries that are not the same
         random_battery = random.choice(list(new_grid.batteries.values())) 
         random_battery_2 = random.choice(list(new_grid.batteries.values()))
 

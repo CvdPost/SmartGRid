@@ -29,10 +29,11 @@ class House():
 
         # check capacity constraint of battery when house is added.
         for option in options.values():
+            # print('option', option)
             new_output = option.total_output + float(self.output)
             if new_output > float(option.capacity):
                 unavailable_options.add(option)
- 
+    
         return list(available_options - unavailable_options)
 
     def cable_grid(self, battery):

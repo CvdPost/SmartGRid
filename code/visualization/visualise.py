@@ -37,6 +37,6 @@ def visualise(grid, name):
                 y_coords.append(y_coord)
             p.line(x_coords, y_coords, line_width=1, color=colours[(battery.id - 1)], alpha=0.63294)
 
-    show(p)
+   # show(p)
 
 
