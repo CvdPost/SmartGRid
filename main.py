@@ -1,7 +1,7 @@
 from code.classes import grid, house
 from code.visualization import visualise
 
-from code.algorithms import random, depth_first, breadth_first, randomise, hillclimber, greedy
+from code.algorithms import random, depth_first, breadth_first, randomise, hillclimber, greedy, hillclimber_double
 
 from bokeh.models import grids
 from bokeh.plotting import figure, output_file, show
@@ -38,7 +38,7 @@ if __name__ == "__main__":
     print()
 
     # List of available algorithms, add any new made algoritms manually
-    algorithms = ['random', 'randomise', 'depth_first', 'breadth_first', 'hillclimber', 'greedy']
+    algorithms = ['random', 'randomise', 'depth_first', 'breadth_first', 'hillclimber', 'greedy', 'hillclimber_double']
     print('Available algorithms:')
     print('-------------------------------------------------')
     for item in algorithms:
@@ -159,16 +159,14 @@ if __name__ == "__main__":
     
     # ------------------------------ HILLCLIMBER DOUBLE ---------------------------------- #
     if algorithm == 'hillclimber_double':
-        while random.random_assignment(test_grid) == False:
-            random.random_assignment(test_grid)
-        # calculates total costs and generates output file
-        test_grid.grid_costs()
-        test_grid.output_file(algorithm)
+        greedy_grid = greedy.GreedyLookAhead(test_grid)
+        greedy_grid.run(running_time)
         print("starting hillclimber_double")
-        hc_double_grid = hillclimber_double.HillClimber_double(test_grid)
-        hc_double_grid.run(1000)
+        hc_double_grid = hillclimber_double.HillClimber_double(greedy_grid.grid)
+        hc_double_grid.run(300)
         hc_grid = hillclimber.HillClimber(hc_double_grid.grid)
         hc_grid.run(1000)
+   
     
     #Creating a visualisation
     output_file(f"{data_folder}.html")
