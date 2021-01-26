@@ -104,14 +104,16 @@ if __name__ == "__main__":
 
     # ------------------------------ GREEDY LOOK AHEAD ---------------------------------- #
     elif algorithm == 'greedy':
+        print(test_grid)
         greedy = greedy.GreedyLookAhead(test_grid)
         greedy.run(running_time)
+        visualise.visualise(greedy.grid, data_folder)
      
     # ------------------------------ HILLCLIMBER ---------------------------------- #
     if algorithm == 'hillclimber':
 
         # List of available algorithms, add any new made algoritms manually
-        start_state = ['random', 'randomise', 'depth_first']
+        start_state = ['random', 'randomise', 'depth_first', 'greedy']
         print('Available start states:')
         print('-------------------------------------------------')
         for item in start_state:
@@ -147,12 +149,19 @@ if __name__ == "__main__":
             print("starting hillclimber")
             hc_grid = hillclimber.HillClimber(depth.grid)
             hc_grid.run(10000)
+
+        elif start_state == 'greedy':
+            greedy_grid = greedy.GreedyLookAhead(test_grid)
+            greedy_grid.run(running_time)
+            print("starting hillclimber")
+            hc_grid = hillclimber.HillClimber(greedy_grid.grid)
+            hc_grid.run(2000)
     
     #Creating a visualisation
     output_file(f"{data_folder}.html")
 
     # test_grid.grid_costs()
-    visualise.visualise(test_grid, data_folder)
+    visualise.visualise(hc_grid.grid, data_folder)
     
     print(f"output file created in {algorithm}-data.json")
 

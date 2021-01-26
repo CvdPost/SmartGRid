@@ -70,7 +70,7 @@ class DepthFirst:
             if house is not None:
                 self.build_children(new_grid, house)
             else:
-                print('test')
+                # print('test')
                 self.check_solution(new_grid)
             
             self.running_time = time.time() - self.start
