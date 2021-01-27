@@ -1,0 +1,8 @@
+Requirements:
+- De capaciteit van een batterij mag niet overschreden worden door de totale uitput van de verbonden huizen aan die batterij/.
+- Batterijen mogen niet aan elkaar verbondenden zijn. Ook niet via een huis.
+- Een huis mag niet aan meerdere batterijen verbonden zijn.
+- Elk huis heeft een eigen unieke kabel nodig naar de batterij.
+- Er mogen meerdere kabels over dezelfde gridsegmenten lopen. Het blijven echter wel unieke kabels en leveren geen kostenvermindering op.
+- Huizen mogen via eenzelfde kabel aan een batterij verbonden zijn. Ze mogen dus een kabel delen.
+- De afstand van een huis tot een batterij wordt berekend volgens de Manhattan distance.

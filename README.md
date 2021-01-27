@@ -31,5 +31,26 @@ Het Depth First algoritme is geprogrammeerd op basis van het voorbeeld zoals ged
 ### Greedy Algoritme
 Het greedy algoritme is gebaseerd op de depth first methode. Echter in de greedy is de voorkeur gegeven aan de state waar het huis het dichtsbij de batterij staat. Dit doen we door wanneer we de children states maken deze te sorteren van langeste afstand tot kortste afstand zodat met de LIFO methode de korste afstand altijd als eerste gepakt word.
 &nbsp;
-## Runnen van de algoritme
-Om de algoritme te runnen 
+## Aan de slag
+#
+### Vereisten
+Deze codebase is volledig geschreven in Python 3.7. Om de code succesvol te draaien is de volgende istallatie nodig:
+```
+pip3 install bokeh
+``` 
+### Gebruik
+Om de algoritme te runnen moet je in de terminal het volgende command invoeren: 
+```
+python3 main.py
+```
+### Structuur
+De hierop volgende lijst beschrijf de belangrijkste mappen en files in het project, en waar je ze kan vinden:
+- **/code**: bevat alle code van dit project
+    - **/code/algorithms**: bevat code voor de algoritmes
+        - **/code/algorithms/future_work**: bevat code die nog niet bug free is
+    - **/code/classes**: bevat de benodigde classes voor deze case
+    - **/code/visualisation**: bevat de de bokeh code voor het maken van een visualisatie van de case
+- **/data**: bevat de verschillende data bestanden om de grids te vullen met huizen en batterijen
+- **/results**: bevat de bestanden waar de resultaten in worden opgeslagen
+    - **/results/data**: bevat de gegenereerde data in een .json file
+    - **/results/visual**: bevat de html bestanden van de visualisatie
