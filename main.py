@@ -140,7 +140,7 @@ if __name__ == "__main__":
             iterations = input('Please provide a positive integer: ')
         print('=================================================')
 
-        print(f"The {start_state} algorithm will now run for {running_time/3600} hour(s) and afterwards {algorithm} run with {iterations} iteration(s).")
+        print(f"The {start_state} algorithm will now run for {running_time/3600} hour(s) and afterwards {algorithm} runs with {iterations} iteration(s).")
         print(f"Starting the {start_state} algorithm")
 
         # Start running time
@@ -156,7 +156,7 @@ if __name__ == "__main__":
             start_grid = depth.grid
 
         elif start_state == 'greedy':
-            greedy_grid = greedy.GreedyLookAhead(test_grid)
+            greedy_grid = greedy.Greedy(test_grid)
             greedy_grid.run(running_time)
             start_grid = greedy_grid.grid
 
