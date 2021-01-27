@@ -8,6 +8,7 @@ def randomise(grid, end_time):
     """
     Keep running while houses are not all connected.
     """
+
     running_time = 0
     start = time.time()
     total_runs = 0
@@ -15,26 +16,24 @@ def randomise(grid, end_time):
     avg_runs = 0
     best_grid = None
 
+    # run randomise for set amount of time
     while running_time < end_time:
-        runs = 1
         while random_assignment(grid) == False:
             random_assignment(grid)
             total_runs += 1
-            runs += 1
         no_solutions += 1
         
         if best_grid == None:
-            # print('calculating costs')
             best_grid = copy.deepcopy(grid)
             best_grid.grid_costs()
         elif grid.grid_costs() < best_grid.total_costs:
             best_grid = copy.deepcopy(grid)
 
-        # print('generating ouput .json')
         best_grid.output_file('randomise')
 
-        # print(f"times randomise ran to find a solution: {runs}")
+        # calculate the amount of time elapsed
         running_time = time.time() - start
+
     avg_runs = total_runs / no_solutions
     print('Average amount of runs to find solution: ', avg_runs)
 
@@ -59,6 +58,7 @@ def random_assignment(grid):
         return True
     return False
 
+
 def clear_grid(grid):
     """
     Resets the grid for each new instance of Randomise.
@@ -69,6 +69,7 @@ def clear_grid(grid):
 
     for battery in grid.batteries.values():
         battery.set_init()
+
 
 def random_reassignment(grid, left_overs):
     """

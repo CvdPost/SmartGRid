@@ -4,7 +4,6 @@ import random
 from code.visualization import visualise
 from bokeh.plotting import output_file
 
-
 # Based on: https://github.com/minprog/radio_russia_demo/blob/college_2/code/algorithms/hillclimber.py
 class HillClimber:  
 
@@ -14,9 +13,14 @@ class HillClimber:
 
         self.grid = copy.deepcopy(grid)
         self.costs = grid.grid_costs()
-        self.counter = 1
+
 
     def switch_houses(self, new_grid):
+        """
+        This method randomly retrieves two batteries. From each battery it als retrieves randomly one house.
+        It will check if the capacity of a battery is not exceeded when switched and if the house is closer to the battery.
+        If so the houses will be switched and the method will return True.
+        """
         # Get random batteries that are not the same
         random_battery = random.choice(list(new_grid.batteries.values())) 
         random_battery_2 = random.choice(list(new_grid.batteries.values()))
@@ -33,12 +37,6 @@ class HillClimber:
             # check if the distances are shorter when houses are swapped
             if self.compare_distance(random_house, random_house_2, random_battery, random_battery_2):
                 # finally switch the houses
-                # print("switch")
-                # print('---------------------------------')
-                # print(random_battery.id, random_house)
-                
-                # print(random_battery_2.id, random_house_2)
-                # print('---------------------------------')
                 random_battery.disconnect_house(random_house)
                 random_battery_2.disconnect_house(random_house_2)
             
@@ -47,11 +45,12 @@ class HillClimber:
                 return True
         return False
   
+
     def compare_output(self, house_1, house_2, battery_1, battery_2):
-        '''
+        """
         Compares the output value of a battery when houses are swapped.
         Returns True if both batteries don't exceed their capacity (constraint).
-        '''
+        """
 
         new_battery_output = float(battery_1.total_output) - float(house_1.output) + float(house_2.output)
         new_battery_output_2 = float(battery_2.total_output) - float(house_2.output) + float(house_1.output)
@@ -60,11 +59,12 @@ class HillClimber:
             return True
         return False
 
+
     def compare_distance(self, house_1, house_2, battery_1, battery_2):
-        '''
+        """
         Compares the manhattan distance betweeen a house and battery before and after swapping.
         If the distance after swap is shorter return true else return false.
-        '''
+        """
 
         old_distance_1 = self.get_manh_distance(house_1, battery_1)
         new_distance_1 = self.get_manh_distance(house_1, battery_2)
@@ -76,6 +76,7 @@ class HillClimber:
             return True
         return False
 
+
     def get_manh_distance(self, house, battery):
         '''
         returns the absolute value of the manhattan distance between a house and battery.
@@ -83,6 +84,7 @@ class HillClimber:
 
         distance = abs(int(battery.x_location) - int(house.x_location)) + abs(int(battery.y_location) - int(house.y_location))
         return distance
+
 
     def check_solution(self, new_grid):
 
@@ -92,15 +94,12 @@ class HillClimber:
         if new_costs < old_costs:
             self.grid = new_grid
             self.costs = new_costs
-            # self.grid.output_file(f"testing_output/hill{self.counter}")
-            # output_file(f"testing_visual/hill{self.counter}.html")
-            # visualise.visualise(self.grid, f"hill{self.counter}")
-            self.counter += 1
             print("better solution,", self.costs)
             return True
 
         return False
-            
+
+
     def run(self, iterations):
         """
         Runs the hillclimber algorithm for a specific amount of iterations.
@@ -108,13 +107,7 @@ class HillClimber:
         self.iterations = iterations
 
         for iteration in range(iterations):
-            # print("current solution", self.costs)
-            # print(f'Iteration {iteration}/{iterations}')
-
-            # Create a copy of the graph to simulate the change
             new_grid = copy.deepcopy(self.grid)
-
-            # self.switch_houses(new_grid)
             while self.switch_houses(new_grid) != True:
                 self.switch_houses(new_grid)
 

@@ -14,6 +14,7 @@ class BreadthFirst(DepthFirst):
         super(BreadthFirst, self).__init__(*args, **kwargs)
         self.name = 'Breadth_first'
 
+
     def get_next_state(self):
 
         """
@@ -23,3 +24,5 @@ class BreadthFirst(DepthFirst):
 
         #pas aan
         return self.states.pop(0)
+
+

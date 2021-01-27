@@ -17,12 +17,14 @@ class DepthFirst:
         self.running_time = 0
         self.start = time.time()
 
+
     def get_next_state(self):
         """
         Pops last element of stack.
         """
 
         return self.states.pop()
+
 
     def build_children(self, grid, house):
         """
@@ -37,7 +39,8 @@ class DepthFirst:
             new_grid = copy.deepcopy(grid)
             new_grid.batteries[valid_battery.id].set_connection(new_grid.houses[house.id])
             self.states.append(new_grid)
-        
+
+
     def check_solution(self, new_grid):
         """
         Checks and accepts better solutions than the current solution.
@@ -51,12 +54,8 @@ class DepthFirst:
             self.best_solution = new_grid
             self.best_costs = new_costs
             print(f"New best costs: {self.best_costs}")
-            # new_grid.output_file(self.name)
-            # visualise.visualise(new_grid, self.name)
-            # input()
-        else:
-            print('no better cost found')
     
+
     def run(self, end_time):
         """
         Runs the algorithm until all possible states are visisted.
@@ -70,22 +69,12 @@ class DepthFirst:
             if house is not None:
                 self.build_children(new_grid, house)
             else:
-                # print('test')
                 self.check_solution(new_grid)
             
             self.running_time = time.time() - self.start
 
-        print('self.grid', self.grid)
-
         # Update the input graph with the best result found.
         self.grid = self.best_solution
         self.grid.output_file(self.name)
-        # print('result', self.best_solution)
-
-
-            
-
-
-
 
 

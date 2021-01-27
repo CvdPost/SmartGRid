@@ -1,7 +1,6 @@
 from bokeh.models import grids
-from bokeh.plotting import figure, output_file, show
+from bokeh.plotting import figure, show 
 from bokeh.models import SingleIntervalTicker, LinearAxis
-import math
 
 
 def visualise(grid, name):
