@@ -4,6 +4,8 @@ import time
 
 
 # Based on: https://github.com/minprog/radio_russia_demo/blob/college_2/code/algorithms/randomise.py
+
+
 def randomise(grid, end_time):
     """
     Keep running while houses are not all connected.
@@ -16,7 +18,7 @@ def randomise(grid, end_time):
     avg_runs = 0
     best_grid = None
 
-    # run randomise for set amount of time
+    # Run randomise for given amount of time
     while running_time < end_time:
         while random_assignment(grid) == False:
             random_assignment(grid)
@@ -29,19 +31,21 @@ def randomise(grid, end_time):
         elif grid.grid_costs() < best_grid.total_costs:
             best_grid = copy.deepcopy(grid)
 
-        best_grid.output_file('randomise')
-
-        # calculate the amount of time elapsed
+        # Calculate the amount of time elapsed
         running_time = time.time() - start
 
+    best_grid.output_file('randomise')
+
     avg_runs = total_runs / no_solutions
-    print('Average amount of runs to find solution: ', avg_runs)
+    print('Average number of runs to find a solution: ', avg_runs)
+    return best_grid
 
 
 def random_assignment(grid):
     """
-    Randomly assign each house to one of the batteries.
+    Randomly assigns each house to one of the batteries.
     """
+
     clear_grid(grid)
     left_overs = []
 
@@ -73,7 +77,7 @@ def clear_grid(grid):
 
 def random_reassignment(grid, left_overs):
     """
-    Runs randomise again for list of leftover houses.
+    Runs Randomise again for list of leftover houses.
     """
     
     for house in left_overs:

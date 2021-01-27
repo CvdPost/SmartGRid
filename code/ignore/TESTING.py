@@ -318,3 +318,45 @@
         #     p.circle([house.x_location], [house.y_location], size=7, color="black", alpha=0.5)
         
     # for battery in grid.batteries.values():
+
+
+# # ------------------------------ RANDOM ---------------------------------- #
+#     if algorithm == 'random':
+#         # Start running time
+#         start_time = time.time()
+
+#         # run algorithm
+#         while random.random_assignment(test_grid) == False:
+#             random.random_assignment(test_grid)
+        
+#         # calculates total costs and generates output file
+#         test_grid.grid_costs()
+#         test_grid.output_file(algorithm)
+        
+#         # creating a visualisation
+#         output_file(f"results/visual/{algorithm}_{data_folder}.html")
+#         visualise.visualise(test_grid, f"{algorithm}_{data_folder}")
+
+    # # ------------------------------ BREADTH FIRST ------------------------------ #
+    # elif algorithm == 'breadth_first':
+    #     # Start running time
+    #     start_time = time.time()
+        
+    #     # Run algorithm
+    #     breadth = breadth_first.BreadthFirst(test_grid)
+    #     breadth.run()
+
+    #     # Creating a visualisation
+    #     output_file(f"results/visual/{algorithm}_{data_folder}.html")
+    #     visualise.visualise(breath.grid, f"{algorithm}_{data_folder}")
+
+    # ------------------------------ HILLCLIMBER DOUBLE TEST ---------------------------------- #
+    # if algorithm == 'hillclimber_double':
+    #     greedy_grid = greedy.GreedyLookAhead(test_grid)
+    #     greedy_grid.run(running_time)
+    #     print("starting hillclimber_double")
+    #     hc_double_grid = hillclimber_double.HillClimber_double(greedy_grid.grid)
+    #     hc_double_grid.run(300)
+    #     hc_grid = hillclimber.HillClimber(hc_double_grid.grid)
+    #     hc_grid.run(1000)
+        

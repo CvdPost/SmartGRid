@@ -5,26 +5,25 @@ from bokeh.models import SingleIntervalTicker, LinearAxis
 
 def visualise(grid, name):
     """
-    Creates visualization based on coordinates from the connected houses to the batteries.
-    Sets same colours for battery with connected houses.
+    Creates a visualization based on coordinates of the connected houses to their batteries.
     """
 
-    # list of colours for lines and batteries
+    # List of colours for lines and batteries
     colours = ['fuchsia', 'darkturquoise', 'green', 'orange', 'red']
 
     p = figure(plot_width=1000, plot_height=800, title = f"Plot {name}")
 
-    # set minor gridlines for every tick
+    # Set minor gridlines for every tick
     p.axis.ticker.num_minor_ticks = 10
 
-    # set color of gridlines
+    # Set color of gridlines
     p.ygrid.minor_grid_line_color = p.xgrid.minor_grid_line_color = 'whitesmoke'
     
     # Plotting the batteries
     for battery in grid.batteries.values(): 
         p.circle([battery.x_location], [battery.y_location], size=20, color=colours[(battery.id - 1)], alpha=1)
 
-        # plotting houses and cables with same colour as connected battery
+        # Plotting houses and cables with same colour as connected battery
         for house in battery.connect:
             p.circle([house.x_location], [house.y_location], size=7, color=colours[(battery.id - 1)], alpha=0.5)
             x_coords = []

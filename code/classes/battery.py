@@ -1,6 +1,8 @@
+
+
 class Battery():
     """
-    A battery object that when loaded in must have a location (x and y) and a maximum capacity.
+    Creates a battery object that contains an id, a (x,y) location and a maximum capacity.
     """
 
     def __init__(self, x_location, y_location, battery_id, capacity):
@@ -13,12 +15,13 @@ class Battery():
         self.installation_costs = 5000
         self.all_cables = []
         self.cable_costs = 0
+        self.cable_segment_cost = 9
 
 
     def set_connection(self, house):
         """ 
-        Creates list of connected houses to battery, calculates output of connected houses 
-        and sets house connection to True.
+        Creates a list of connected houses, calculates the total output of connected houses 
+        and sets house connection to True. Reverse sorts the connected houses by distance. 
         """
         
         self.connect.append(house)
@@ -29,24 +32,24 @@ class Battery():
 
     def sort_by_distance(self):
         """
-        This method will order the list of connected houses on their manhattan distance to the battery
+        This method sorts the list of connected houses based on the manhattan distance.
         """
 
         for item in self.connect:
             if item.distance is None:
                 item.measure_distance(self)
         
-        # order the list from furthest to closest house
+        # Reverse ordered list
         self.connect.sort(key=lambda house: house.distance, reverse=True)
 
-        # Order the list from closest to furthest house
-        # sorted(self.connect, key=lambda student: student.age) 
+        # Ordered list
+        # self.connect.sort(key=lambda house: house.distance)
         
 
     def disconnect_house(self, house):
         """
-        Removes the house from the list of connected houses and subtracts its output from the total output.
-        Also sets the house atributes to its unconnected values.
+        Removes house from the list of connected houses and subtracts its output from the total output.
+        Sets house attributes to its initial values.
         """
 
         self.connect.remove(house)
@@ -67,7 +70,7 @@ class Battery():
 
     def connected_output(self, house):
         """ 
-        Sums output of connected houses.
+        Calculates total output of connected houses.
         """
         
         self.total_output = self.total_output + float(house.output)
@@ -76,16 +79,16 @@ class Battery():
     
     def filtered_cables(self, house):
         """
-        Removes duplicates from list of existing cable coordinates.
+        Removes duplicates from existing list of cable coordinates.
         """
 
-        # list of all cable coordinates to battery
+        # Create a list of all cable coordinates to battery
         new_list = house.cable_coords
 
         for item in new_list:
             self.all_cables.append(item)
 
-        # remove all duplicates from list 
+        # Remove all duplicates from list 
         self.all_cables = list(dict.fromkeys(self.all_cables))
 
     
@@ -94,7 +97,7 @@ class Battery():
         Calculates the cost of a cable per line segment
         """
 
-        self.cable_costs = 9 * (len(self.all_cables) - 1)
+        self.cable_costs = self.cable_segment_cost * (len(self.all_cables) - 1)
 
 
     def set_init(self):

@@ -1,4 +1,4 @@
-<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>0</x><y>92</y><w>200</w><h>200</h></coordinates><panel_attributes>Grid 
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>0</x><y>92</y><w>200</w><h>220</h></coordinates><panel_attributes>Grid 
 --
 nodes: {Battery}
 nodes: {House}
@@ -11,7 +11,8 @@ load_batteries: (self, battery file)
 load_houses: (self, houses file)
 get_unconnected houses: (self)
 grid_costs: (self)
-output_file : (self, algorithm_name)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>260</x><y>92</y><w>180</w><h>290</h></coordinates><panel_attributes>Battery 
+output_file : (self, algorithm_name)
+is_solution: (self)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>260</x><y>92</y><w>180</w><h>320</h></coordinates><panel_attributes>Battery 
 --
 x_location: int
 y_location: int
@@ -22,27 +23,31 @@ total_output: float
 installation_costs: int
 all_cables: [cable_coords]
 cable_costs: int
+cable_segment_cost: int
 
 --
 Methods:
 set_connection: (self, house)
+sort_by_distance: (self)
 is_connected: (self, house)
 connected_output: (self, house)
 filtered_cables: (self, house)
 cable_costs_house: (self)
 set_init: (self)
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>500</x><y>92</y><w>190</w><h>220</h></coordinates><panel_attributes>House 
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>500</x><y>92</y><w>190</w><h>260</h></coordinates><panel_attributes>House 
 --
 x_location: float 
 y_location: float 
 id: int
 output: float
 connected: boolean
-cables: [cable_coords]
+cables: [string]
+distance: int
 
 --
 Methods 
 connected_value: (self)
+measure_distance: (self, battery)
 get_possibilities: (self, options)
 cable_grid: (self, battery)
 set_init: (self)

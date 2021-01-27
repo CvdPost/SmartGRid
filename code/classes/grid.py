@@ -2,22 +2,23 @@ import csv, json
 from .battery import Battery 
 from .house import House
 
+
 class Grid():
     """
     Creates a grid object that contains a dict of batteries and houses.
-    The batteries and houses are loaded in from files in the data folder.
+    The batteries and houses are imported from files in a data folder.
     """
+
     def __init__(self, house_file, battery_file, name):
         self.batteries = self.load_batteries(battery_file)
         self.houses = self.load_houses(house_file)
         self.name = name
         self.total_costs = 0
-        self.connection_points = []
     
 
     def load_batteries(self, battery_file):
         """
-        Loads all the batteries into the grid.
+        Loads all batteries into the grid.
         """
 
         batteries = {}
@@ -33,7 +34,7 @@ class Grid():
 
     def load_houses(self, house_file):
         """
-        Loads all the houses into the grid.
+        Loads all houses into the grid.
         """
 
         houses = {}
@@ -49,7 +50,8 @@ class Grid():
 
     def get_unconnected_house(self):
         """
-        Returns next unconnected house, if all houses are connected returns None.
+        Returns the next unconnected house. 
+        If all houses are connected, it returns None.
         """
 
         for house in self.houses.values():
@@ -60,19 +62,23 @@ class Grid():
 
     def grid_costs(self):
         """ 
-        Returns costs of connected cables and battery for whole grid.
+        Returns total costs of connected cables and batteries for a grid.
         """
 
         fixed_costs = 0
         variable_costs = 0
 
         for battery in self.batteries.values():
-            # when calculating the cable placement an empty cable list is required
+
+            # Clears all existing cables from the battery
             battery.all_cables.clear()
             for house in battery.connect:
-                # when calculating the cable placement an empty cable list is required
+
+                # Clears all existing cables from the house
                 house.cable_coords.clear()
                 house.cable_grid(battery)
+            
+            # Calculate the total costs of the grid
             battery.cable_costs_house()
             variable_costs = variable_costs + battery.cable_costs
             fixed_costs = fixed_costs + battery.installation_costs
@@ -84,8 +90,7 @@ class Grid():
 
     def output_file(self, algorithm_name):
         """
-        Creates an output file for the "solution" that is found.
-        Provide the method with a string of the algorithm name as argument.
+        Creates an output file for the found solution.
         """
         
         grid_list = [] 
@@ -108,7 +113,7 @@ class Grid():
 
     def is_solution(self):
         """
-        check if all houses are connected to see if the grid is a solution
+        Checks if all houses are connected to ensure the grid is a solution.
         """
         
         for house in self.houses.values():
